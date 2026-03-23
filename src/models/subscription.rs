@@ -13,16 +13,16 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Subscription {
-    #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
-    #[serde(rename = "platform_subscription_id", skip_serializing_if = "Option::is_none")]
-    pub platform_subscription_id: Option<String>,
-    #[serde(rename = "platform_plan_id", skip_serializing_if = "Option::is_none")]
-    pub platform_plan_id: Option<String>,
-    #[serde(rename = "status", skip_serializing_if = "Option::is_none")]
-    pub status: Option<models::SubscriptionStatus>,
-    #[serde(rename = "recurring", skip_serializing_if = "Option::is_none")]
-    pub recurring: Option<bool>,
+    #[serde(rename = "name")]
+    pub name: String,
+    #[serde(rename = "platform_subscription_id")]
+    pub platform_subscription_id: String,
+    #[serde(rename = "platform_plan_id")]
+    pub platform_plan_id: String,
+    #[serde(rename = "status")]
+    pub status: models::SubscriptionStatus,
+    #[serde(rename = "recurring")]
+    pub recurring: bool,
     #[serde(rename = "trial_ends_at", skip_serializing_if = "Option::is_none")]
     pub trial_ends_at: Option<String>,
     #[serde(rename = "paused_from", skip_serializing_if = "Option::is_none")]
@@ -32,13 +32,13 @@ pub struct Subscription {
 }
 
 impl Subscription {
-    pub fn new() -> Subscription {
+    pub fn new(name: String, platform_subscription_id: String, platform_plan_id: String, status: models::SubscriptionStatus, recurring: bool) -> Subscription {
         Subscription {
-            name: None,
-            platform_subscription_id: None,
-            platform_plan_id: None,
-            status: None,
-            recurring: None,
+            name,
+            platform_subscription_id,
+            platform_plan_id,
+            status,
+            recurring,
             trial_ends_at: None,
             paused_from: None,
             ends_at: None,

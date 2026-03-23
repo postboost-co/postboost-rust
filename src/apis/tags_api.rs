@@ -61,6 +61,7 @@ pub enum UpdateTagError {
 }
 
 
+/// Creates a new color-coded tag in the workspace for organizing posts.
 pub async fn create_tag(configuration: &configuration::Configuration, workspace_uuid: &str, tag_input: models::TagInput) -> Result<models::Tag, Error<CreateTagError>> {
     let local_var_configuration = configuration;
 
@@ -92,6 +93,7 @@ pub async fn create_tag(configuration: &configuration::Configuration, workspace_
     }
 }
 
+/// Permanently deletes a tag. Posts that had this tag attached are unaffected.
 pub async fn delete_tag(configuration: &configuration::Configuration, workspace_uuid: &str, tag_uuid: &str) -> Result<serde_json::Value, Error<DeleteTagError>> {
     let local_var_configuration = configuration;
 
@@ -122,6 +124,7 @@ pub async fn delete_tag(configuration: &configuration::Configuration, workspace_
     }
 }
 
+/// Returns a single tag by UUID.
 pub async fn get_tag(configuration: &configuration::Configuration, workspace_uuid: &str, tag_uuid: &str) -> Result<models::Tag, Error<GetTagError>> {
     let local_var_configuration = configuration;
 
@@ -152,6 +155,7 @@ pub async fn get_tag(configuration: &configuration::Configuration, workspace_uui
     }
 }
 
+/// Returns all tags defined in the workspace.
 pub async fn list_tags(configuration: &configuration::Configuration, workspace_uuid: &str) -> Result<models::ListTags200Response, Error<ListTagsError>> {
     let local_var_configuration = configuration;
 
@@ -182,6 +186,7 @@ pub async fn list_tags(configuration: &configuration::Configuration, workspace_u
     }
 }
 
+/// Updates a tag's name or color.
 pub async fn update_tag(configuration: &configuration::Configuration, workspace_uuid: &str, tag_uuid: &str, tag_input: models::TagInput) -> Result<serde_json::Value, Error<UpdateTagError>> {
     let local_var_configuration = configuration;
 

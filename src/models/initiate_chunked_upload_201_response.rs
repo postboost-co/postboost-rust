@@ -11,32 +11,23 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum InitiateRemoteUpload200Response {
-    Media(Box<models::Media>),
-    InitiateRemoteUpload200ResponseOneOf(Box<models::InitiateRemoteUpload200ResponseOneOf>),
+#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
+pub struct InitiateChunkedUpload201Response {
+    #[serde(rename = "upload_uuid", skip_serializing_if = "Option::is_none")]
+    pub upload_uuid: Option<uuid::Uuid>,
+    #[serde(rename = "chunk_size", skip_serializing_if = "Option::is_none")]
+    pub chunk_size: Option<i32>,
+    #[serde(rename = "total_chunks", skip_serializing_if = "Option::is_none")]
+    pub total_chunks: Option<i32>,
 }
 
-impl Default for InitiateRemoteUpload200Response {
-    fn default() -> Self {
-        Self::Media(Default::default())
-    }
-}
-/// 
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum Type {
-    #[serde(rename = "image")]
-    Image,
-    #[serde(rename = "video")]
-    Video,
-    #[serde(rename = "gif")]
-    Gif,
-}
-
-impl Default for Type {
-    fn default() -> Type {
-        Self::Image
+impl InitiateChunkedUpload201Response {
+    pub fn new() -> InitiateChunkedUpload201Response {
+        InitiateChunkedUpload201Response {
+            upload_uuid: None,
+            chunk_size: None,
+            total_chunks: None,
+        }
     }
 }
 

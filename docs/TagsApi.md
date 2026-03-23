@@ -17,6 +17,8 @@ Method | HTTP request | Description
 > models::Tag create_tag(workspace_uuid, tag_input)
 Create tag
 
+Creates a new color-coded tag in the workspace for organizing posts.
+
 ### Parameters
 
 
@@ -45,6 +47,8 @@ Name | Type | Description  | Required | Notes
 
 > serde_json::Value delete_tag(workspace_uuid, tag_uuid)
 Delete tag
+
+Permanently deletes a tag. Posts that had this tag attached are unaffected.
 
 ### Parameters
 
@@ -75,6 +79,8 @@ Name | Type | Description  | Required | Notes
 > models::Tag get_tag(workspace_uuid, tag_uuid)
 Get tag
 
+Returns a single tag by UUID.
+
 ### Parameters
 
 
@@ -104,6 +110,8 @@ Name | Type | Description  | Required | Notes
 > models::ListTags200Response list_tags(workspace_uuid)
 List tags
 
+Returns all tags defined in the workspace.
+
 ### Parameters
 
 
@@ -131,6 +139,8 @@ Name | Type | Description  | Required | Notes
 
 > serde_json::Value update_tag(workspace_uuid, tag_uuid, tag_input)
 Update tag
+
+Updates a tag's name or color.
 
 ### Parameters
 

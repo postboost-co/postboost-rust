@@ -13,29 +13,29 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Workspace {
-    #[serde(rename = "uuid", skip_serializing_if = "Option::is_none")]
-    pub uuid: Option<uuid::Uuid>,
-    #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
-    #[serde(rename = "hex_color", skip_serializing_if = "Option::is_none")]
-    pub hex_color: Option<String>,
+    #[serde(rename = "uuid")]
+    pub uuid: uuid::Uuid,
+    #[serde(rename = "name")]
+    pub name: String,
+    #[serde(rename = "hex_color")]
+    pub hex_color: String,
     #[serde(rename = "owner", skip_serializing_if = "Option::is_none")]
     pub owner: Option<Box<models::User>>,
-    #[serde(rename = "access_status", skip_serializing_if = "Option::is_none")]
-    pub access_status: Option<AccessStatus>,
-    #[serde(rename = "created_at", skip_serializing_if = "Option::is_none")]
-    pub created_at: Option<String>,
+    #[serde(rename = "access_status")]
+    pub access_status: AccessStatus,
+    #[serde(rename = "created_at")]
+    pub created_at: String,
 }
 
 impl Workspace {
-    pub fn new() -> Workspace {
+    pub fn new(uuid: uuid::Uuid, name: String, hex_color: String, access_status: AccessStatus, created_at: String) -> Workspace {
         Workspace {
-            uuid: None,
-            name: None,
-            hex_color: None,
+            uuid,
+            name,
+            hex_color,
             owner: None,
-            access_status: None,
-            created_at: None,
+            access_status,
+            created_at,
         }
     }
 }

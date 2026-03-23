@@ -13,23 +13,23 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Tag {
-    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
-    pub id: Option<i32>,
-    #[serde(rename = "uuid", skip_serializing_if = "Option::is_none")]
-    pub uuid: Option<uuid::Uuid>,
-    #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
-    #[serde(rename = "hex_color", skip_serializing_if = "Option::is_none")]
-    pub hex_color: Option<String>,
+    #[serde(rename = "id")]
+    pub id: i32,
+    #[serde(rename = "uuid")]
+    pub uuid: uuid::Uuid,
+    #[serde(rename = "name")]
+    pub name: String,
+    #[serde(rename = "hex_color")]
+    pub hex_color: String,
 }
 
 impl Tag {
-    pub fn new() -> Tag {
+    pub fn new(id: i32, uuid: uuid::Uuid, name: String, hex_color: String) -> Tag {
         Tag {
-            id: None,
-            uuid: None,
-            name: None,
-            hex_color: None,
+            id,
+            uuid,
+            name,
+            hex_color,
         }
     }
 }

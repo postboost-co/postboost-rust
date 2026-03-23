@@ -13,41 +13,41 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Post {
-    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
-    pub id: Option<i32>,
-    #[serde(rename = "uuid", skip_serializing_if = "Option::is_none")]
-    pub uuid: Option<uuid::Uuid>,
-    #[serde(rename = "status", skip_serializing_if = "Option::is_none")]
-    pub status: Option<models::PostStatus>,
-    #[serde(rename = "accounts", skip_serializing_if = "Option::is_none")]
-    pub accounts: Option<Vec<models::Account>>,
-    #[serde(rename = "versions", skip_serializing_if = "Option::is_none")]
-    pub versions: Option<Vec<models::PostVersion>>,
-    #[serde(rename = "tags", skip_serializing_if = "Option::is_none")]
-    pub tags: Option<Vec<models::Tag>>,
+    #[serde(rename = "id")]
+    pub id: i32,
+    #[serde(rename = "uuid")]
+    pub uuid: uuid::Uuid,
+    #[serde(rename = "status")]
+    pub status: models::PostStatus,
+    #[serde(rename = "accounts")]
+    pub accounts: Vec<models::Account>,
+    #[serde(rename = "versions")]
+    pub versions: Vec<models::PostVersion>,
+    #[serde(rename = "tags")]
+    pub tags: Vec<models::Tag>,
     #[serde(rename = "scheduled_at", skip_serializing_if = "Option::is_none")]
     pub scheduled_at: Option<String>,
     #[serde(rename = "published_at", skip_serializing_if = "Option::is_none")]
     pub published_at: Option<String>,
-    #[serde(rename = "created_at", skip_serializing_if = "Option::is_none")]
-    pub created_at: Option<String>,
-    #[serde(rename = "trashed", skip_serializing_if = "Option::is_none")]
-    pub trashed: Option<bool>,
+    #[serde(rename = "created_at")]
+    pub created_at: String,
+    #[serde(rename = "trashed")]
+    pub trashed: bool,
 }
 
 impl Post {
-    pub fn new() -> Post {
+    pub fn new(id: i32, uuid: uuid::Uuid, status: models::PostStatus, accounts: Vec<models::Account>, versions: Vec<models::PostVersion>, tags: Vec<models::Tag>, created_at: String, trashed: bool) -> Post {
         Post {
-            id: None,
-            uuid: None,
-            status: None,
-            accounts: None,
-            versions: None,
-            tags: None,
+            id,
+            uuid,
+            status,
+            accounts,
+            versions,
+            tags,
             scheduled_at: None,
             published_at: None,
-            created_at: None,
-            trashed: None,
+            created_at,
+            trashed,
         }
     }
 }

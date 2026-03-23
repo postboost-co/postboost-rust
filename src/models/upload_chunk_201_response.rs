@@ -12,15 +12,16 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct InitiateRemoteUpload200ResponseOneOf {
-    #[serde(rename = "download_id", skip_serializing_if = "Option::is_none")]
-    pub download_id: Option<String>,
+pub struct UploadChunk201Response {
+    /// Number of chunks received so far.
+    #[serde(rename = "received", skip_serializing_if = "Option::is_none")]
+    pub received: Option<i32>,
 }
 
-impl InitiateRemoteUpload200ResponseOneOf {
-    pub fn new() -> InitiateRemoteUpload200ResponseOneOf {
-        InitiateRemoteUpload200ResponseOneOf {
-            download_id: None,
+impl UploadChunk201Response {
+    pub fn new() -> UploadChunk201Response {
+        UploadChunk201Response {
+            received: None,
         }
     }
 }

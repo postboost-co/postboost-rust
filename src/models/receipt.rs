@@ -13,41 +13,41 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Receipt {
-    #[serde(rename = "uuid", skip_serializing_if = "Option::is_none")]
-    pub uuid: Option<uuid::Uuid>,
-    #[serde(rename = "transaction_id", skip_serializing_if = "Option::is_none")]
-    pub transaction_id: Option<String>,
-    #[serde(rename = "invoice_number", skip_serializing_if = "Option::is_none")]
-    pub invoice_number: Option<String>,
-    #[serde(rename = "amount", skip_serializing_if = "Option::is_none")]
-    pub amount: Option<f64>,
-    #[serde(rename = "tax", skip_serializing_if = "Option::is_none")]
-    pub tax: Option<f64>,
-    #[serde(rename = "currency", skip_serializing_if = "Option::is_none")]
-    pub currency: Option<String>,
+    #[serde(rename = "uuid")]
+    pub uuid: uuid::Uuid,
+    #[serde(rename = "transaction_id")]
+    pub transaction_id: String,
+    #[serde(rename = "invoice_number")]
+    pub invoice_number: String,
+    #[serde(rename = "amount")]
+    pub amount: f64,
+    #[serde(rename = "tax")]
+    pub tax: f64,
+    #[serde(rename = "currency")]
+    pub currency: String,
     #[serde(rename = "receipt_url", skip_serializing_if = "Option::is_none")]
     pub receipt_url: Option<String>,
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
-    #[serde(rename = "paid_at", skip_serializing_if = "Option::is_none")]
-    pub paid_at: Option<String>,
-    #[serde(rename = "created_at", skip_serializing_if = "Option::is_none")]
-    pub created_at: Option<String>,
+    #[serde(rename = "paid_at")]
+    pub paid_at: String,
+    #[serde(rename = "created_at")]
+    pub created_at: String,
 }
 
 impl Receipt {
-    pub fn new() -> Receipt {
+    pub fn new(uuid: uuid::Uuid, transaction_id: String, invoice_number: String, amount: f64, tax: f64, currency: String, paid_at: String, created_at: String) -> Receipt {
         Receipt {
-            uuid: None,
-            transaction_id: None,
-            invoice_number: None,
-            amount: None,
-            tax: None,
-            currency: None,
+            uuid,
+            transaction_id,
+            invoice_number,
+            amount,
+            tax,
+            currency,
             receipt_url: None,
             description: None,
-            paid_at: None,
-            created_at: None,
+            paid_at,
+            created_at,
         }
     }
 }

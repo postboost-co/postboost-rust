@@ -13,16 +13,16 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ScheduleResult {
-    #[serde(rename = "success", skip_serializing_if = "Option::is_none")]
-    pub success: Option<bool>,
+    #[serde(rename = "success")]
+    pub success: bool,
     #[serde(rename = "scheduled_at", skip_serializing_if = "Option::is_none")]
     pub scheduled_at: Option<String>,
 }
 
 impl ScheduleResult {
-    pub fn new() -> ScheduleResult {
+    pub fn new(success: bool) -> ScheduleResult {
         ScheduleResult {
-            success: None,
+            success,
             scheduled_at: None,
         }
     }

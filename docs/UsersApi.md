@@ -18,6 +18,8 @@ Method | HTTP request | Description
 > models::User create_user(user_input)
 Create user
 
+Creates a new user account on the platform. Admin only.
+
 ### Parameters
 
 
@@ -45,6 +47,8 @@ Name | Type | Description  | Required | Notes
 
 > serde_json::Value delete_user(user_id)
 Delete user
+
+Permanently deletes a user account. Returns 400 if you attempt to delete your own account. Admin only.
 
 ### Parameters
 
@@ -74,6 +78,8 @@ Name | Type | Description  | Required | Notes
 > serde_json::Value delete_users_bulk(delete_users_bulk_request)
 Delete users (bulk)
 
+Permanently deletes one or more user accounts. You cannot delete your own account. Admin only.
+
 ### Parameters
 
 
@@ -102,6 +108,8 @@ Name | Type | Description  | Required | Notes
 > models::User get_user(user_id)
 Get user
 
+Returns a single user account by ID. Admin only.
+
 ### Parameters
 
 
@@ -127,8 +135,10 @@ Name | Type | Description  | Required | Notes
 
 ## list_users
 
-> models::ListUsers200Response list_users(keyword)
+> models::ListUsers200Response list_users(keyword, page)
 List users
+
+Returns a paginated list of all users on the platform. Optionally filter by name or email. Admin only.
 
 ### Parameters
 
@@ -136,6 +146,7 @@ List users
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **keyword** | Option<**String**> | Search by name or email. |  |
+**page** | Option<**i32**> | Page number (15 items per page). |  |[default to 1]
 
 ### Return type
 
@@ -157,6 +168,8 @@ Name | Type | Description  | Required | Notes
 
 > serde_json::Value update_user(user_id, user_update_input)
 Update user
+
+Updates a user's name, email, admin status, or password. Admin only.
 
 ### Parameters
 

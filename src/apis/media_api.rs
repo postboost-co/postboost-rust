@@ -268,7 +268,7 @@ pub async fn get_remote_upload_status(configuration: &configuration::Configurati
 }
 
 /// Start a chunked upload session for large files. Returns an `upload_uuid`, `chunk_size`, and `total_chunks` to use for subsequent chunk requests. 
-pub async fn initiate_chunked_upload(configuration: &configuration::Configuration, workspace_uuid: &str, initiate_chunked_upload_request: models::InitiateChunkedUploadRequest) -> Result<models::InitiateChunkedUpload200Response, Error<InitiateChunkedUploadError>> {
+pub async fn initiate_chunked_upload(configuration: &configuration::Configuration, workspace_uuid: &str, initiate_chunked_upload_request: models::InitiateChunkedUploadRequest) -> Result<models::InitiateChunkedUpload201Response, Error<InitiateChunkedUploadError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -300,7 +300,7 @@ pub async fn initiate_chunked_upload(configuration: &configuration::Configuratio
 }
 
 /// Download a file from a remote URL into the media library. For small files the media object is returned immediately. For large files a `download_id` is returned — poll the status endpoint. 
-pub async fn initiate_remote_upload(configuration: &configuration::Configuration, workspace_uuid: &str, initiate_remote_upload_request: models::InitiateRemoteUploadRequest) -> Result<models::InitiateRemoteUpload200Response, Error<InitiateRemoteUploadError>> {
+pub async fn initiate_remote_upload(configuration: &configuration::Configuration, workspace_uuid: &str, initiate_remote_upload_request: models::InitiateRemoteUploadRequest) -> Result<models::InitiateRemoteUpload201Response, Error<InitiateRemoteUploadError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -398,7 +398,7 @@ pub async fn update_media(configuration: &configuration::Configuration, workspac
 }
 
 /// Upload a single chunk of a chunked upload session.
-pub async fn upload_chunk(configuration: &configuration::Configuration, workspace_uuid: &str, upload_uuid: &str, chunk: std::path::PathBuf, chunk_index: i32) -> Result<models::UploadChunk200Response, Error<UploadChunkError>> {
+pub async fn upload_chunk(configuration: &configuration::Configuration, workspace_uuid: &str, upload_uuid: &str, chunk: std::path::PathBuf, chunk_index: i32) -> Result<models::UploadChunk201Response, Error<UploadChunkError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;

@@ -20,6 +20,7 @@ use super::{Error, configuration};
 #[serde(untagged)]
 pub enum CreateReceiptError {
     Status401(serde_json::Value),
+    Status403(serde_json::Value),
     Status422(serde_json::Value),
     UnknownValue(serde_json::Value),
 }
@@ -29,6 +30,7 @@ pub enum CreateReceiptError {
 #[serde(untagged)]
 pub enum DeleteReceiptError {
     Status401(serde_json::Value),
+    Status403(serde_json::Value),
     Status404(serde_json::Value),
     UnknownValue(serde_json::Value),
 }
@@ -38,6 +40,7 @@ pub enum DeleteReceiptError {
 #[serde(untagged)]
 pub enum DeleteReceiptsBulkError {
     Status401(serde_json::Value),
+    Status403(serde_json::Value),
     UnknownValue(serde_json::Value),
 }
 
@@ -46,6 +49,7 @@ pub enum DeleteReceiptsBulkError {
 #[serde(untagged)]
 pub enum GetReceiptError {
     Status401(serde_json::Value),
+    Status403(serde_json::Value),
     Status404(serde_json::Value),
     UnknownValue(serde_json::Value),
 }
@@ -55,6 +59,7 @@ pub enum GetReceiptError {
 #[serde(untagged)]
 pub enum ListReceiptsError {
     Status401(serde_json::Value),
+    Status403(serde_json::Value),
     UnknownValue(serde_json::Value),
 }
 
@@ -63,11 +68,13 @@ pub enum ListReceiptsError {
 #[serde(untagged)]
 pub enum UpdateReceiptError {
     Status401(serde_json::Value),
+    Status403(serde_json::Value),
     Status404(serde_json::Value),
     UnknownValue(serde_json::Value),
 }
 
 
+/// Creates a billing receipt record for a workspace. Admin only.
 pub async fn create_receipt(configuration: &configuration::Configuration, receipt_input: models::ReceiptInput) -> Result<models::Receipt, Error<CreateReceiptError>> {
     let local_var_configuration = configuration;
 
@@ -99,6 +106,7 @@ pub async fn create_receipt(configuration: &configuration::Configuration, receip
     }
 }
 
+/// Permanently deletes a single receipt. Admin only.
 pub async fn delete_receipt(configuration: &configuration::Configuration, receipt_uuid: &str) -> Result<serde_json::Value, Error<DeleteReceiptError>> {
     let local_var_configuration = configuration;
 
@@ -129,6 +137,7 @@ pub async fn delete_receipt(configuration: &configuration::Configuration, receip
     }
 }
 
+/// Permanently deletes one or more receipt records. Admin only.
 pub async fn delete_receipts_bulk(configuration: &configuration::Configuration, delete_receipts_bulk_request: models::DeleteReceiptsBulkRequest) -> Result<serde_json::Value, Error<DeleteReceiptsBulkError>> {
     let local_var_configuration = configuration;
 
@@ -160,6 +169,7 @@ pub async fn delete_receipts_bulk(configuration: &configuration::Configuration, 
     }
 }
 
+/// Returns a single receipt by UUID. Admin only.
 pub async fn get_receipt(configuration: &configuration::Configuration, receipt_uuid: &str) -> Result<models::Receipt, Error<GetReceiptError>> {
     let local_var_configuration = configuration;
 
@@ -190,7 +200,8 @@ pub async fn get_receipt(configuration: &configuration::Configuration, receipt_u
     }
 }
 
-pub async fn list_receipts(configuration: &configuration::Configuration, workspace_uuid: Option<&str>, invoice_number: Option<&str>) -> Result<models::ListReceipts200Response, Error<ListReceiptsError>> {
+/// Returns a paginated list of billing receipts. Filter by workspace UUID or invoice number. Admin only.
+pub async fn list_receipts(configuration: &configuration::Configuration, workspace_uuid: Option<&str>, invoice_number: Option<&str>, page: Option<i32>) -> Result<models::ListReceipts200Response, Error<ListReceiptsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -203,6 +214,9 @@ pub async fn list_receipts(configuration: &configuration::Configuration, workspa
     }
     if let Some(ref local_var_str) = invoice_number {
         local_var_req_builder = local_var_req_builder.query(&[("invoice_number", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = page {
+        local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
     }
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -226,6 +240,7 @@ pub async fn list_receipts(configuration: &configuration::Configuration, workspa
     }
 }
 
+/// Updates a receipt's transaction details, amount, or payment date. Admin only.
 pub async fn update_receipt(configuration: &configuration::Configuration, receipt_uuid: &str, receipt_update_input: models::ReceiptUpdateInput) -> Result<serde_json::Value, Error<UpdateReceiptError>> {
     let local_var_configuration = configuration;
 

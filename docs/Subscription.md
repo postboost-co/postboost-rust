@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | Option<**String**> |  | [optional]
-**platform_subscription_id** | Option<**String**> |  | [optional]
-**platform_plan_id** | Option<**String**> |  | [optional]
-**status** | Option<[**models::SubscriptionStatus**](SubscriptionStatus.md)> |  | [optional]
-**recurring** | Option<**bool**> |  | [optional]
+**name** | **String** |  | 
+**platform_subscription_id** | **String** |  | 
+**platform_plan_id** | **String** |  | 
+**status** | [**models::SubscriptionStatus**](SubscriptionStatus.md) |  | 
+**recurring** | **bool** |  | 
 **trial_ends_at** | Option<**String**> |  | [optional]
 **paused_from** | Option<**String**> |  | [optional]
 **ends_at** | Option<**String**> |  | [optional]

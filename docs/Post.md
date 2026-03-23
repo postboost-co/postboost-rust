@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | Option<**i32**> |  | [optional]
-**uuid** | Option<[**uuid::Uuid**](uuid::Uuid.md)> |  | [optional]
-**status** | Option<[**models::PostStatus**](PostStatus.md)> |  | [optional]
-**accounts** | Option<[**Vec<models::Account>**](Account.md)> |  | [optional]
-**versions** | Option<[**Vec<models::PostVersion>**](PostVersion.md)> |  | [optional]
-**tags** | Option<[**Vec<models::Tag>**](Tag.md)> |  | [optional]
+**id** | **i32** |  | 
+**uuid** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
+**status** | [**models::PostStatus**](PostStatus.md) |  | 
+**accounts** | [**Vec<models::Account>**](Account.md) |  | 
+**versions** | [**Vec<models::PostVersion>**](PostVersion.md) |  | 
+**tags** | [**Vec<models::Tag>**](Tag.md) |  | 
 **scheduled_at** | Option<**String**> |  | [optional]
 **published_at** | Option<**String**> |  | [optional]
-**created_at** | Option<**String**> |  | [optional]
-**trashed** | Option<**bool**> |  | [optional]
+**created_at** | **String** |  | 
+**trashed** | **bool** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

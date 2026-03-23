@@ -20,6 +20,7 @@ use super::{Error, configuration};
 #[serde(untagged)]
 pub enum AddUserToWorkspaceError {
     Status401(serde_json::Value),
+    Status403(serde_json::Value),
     Status422(serde_json::Value),
     UnknownValue(serde_json::Value),
 }
@@ -39,6 +40,7 @@ pub enum CreateWorkspaceError {
 #[serde(untagged)]
 pub enum DeleteWorkspaceError {
     Status401(serde_json::Value),
+    Status403(serde_json::Value),
     Status404(serde_json::Value),
     UnknownValue(serde_json::Value),
 }
@@ -57,6 +59,7 @@ pub enum DeleteWorkspacesBulkError {
 #[serde(untagged)]
 pub enum GetWorkspaceError {
     Status401(serde_json::Value),
+    Status403(serde_json::Value),
     Status404(serde_json::Value),
     UnknownValue(serde_json::Value),
 }
@@ -75,6 +78,7 @@ pub enum ListWorkspacesError {
 #[serde(untagged)]
 pub enum RemoveUserFromWorkspaceError {
     Status401(serde_json::Value),
+    Status403(serde_json::Value),
     UnknownValue(serde_json::Value),
 }
 
@@ -83,6 +87,7 @@ pub enum RemoveUserFromWorkspaceError {
 #[serde(untagged)]
 pub enum UpdateWorkspaceError {
     Status401(serde_json::Value),
+    Status403(serde_json::Value),
     Status404(serde_json::Value),
     UnknownValue(serde_json::Value),
 }
@@ -92,10 +97,12 @@ pub enum UpdateWorkspaceError {
 #[serde(untagged)]
 pub enum UpdateWorkspaceUserError {
     Status401(serde_json::Value),
+    Status403(serde_json::Value),
     UnknownValue(serde_json::Value),
 }
 
 
+/// Adds an existing user to the workspace with a specified role. Admin only.
 pub async fn add_user_to_workspace(configuration: &configuration::Configuration, workspace_uuid: &str, workspace_user_input: models::WorkspaceUserInput) -> Result<serde_json::Value, Error<AddUserToWorkspaceError>> {
     let local_var_configuration = configuration;
 
@@ -159,6 +166,7 @@ pub async fn create_workspace(configuration: &configuration::Configuration, work
     }
 }
 
+/// Permanently deletes a single workspace and all its associated data. Admin only.
 pub async fn delete_workspace(configuration: &configuration::Configuration, workspace_uuid: &str) -> Result<serde_json::Value, Error<DeleteWorkspaceError>> {
     let local_var_configuration = configuration;
 
@@ -189,6 +197,7 @@ pub async fn delete_workspace(configuration: &configuration::Configuration, work
     }
 }
 
+/// Permanently deletes one or more workspaces and all their associated data. Admin only.
 pub async fn delete_workspaces_bulk(configuration: &configuration::Configuration, delete_workspaces_bulk_request: models::DeleteWorkspacesBulkRequest) -> Result<serde_json::Value, Error<DeleteWorkspacesBulkError>> {
     let local_var_configuration = configuration;
 
@@ -220,6 +229,7 @@ pub async fn delete_workspaces_bulk(configuration: &configuration::Configuration
     }
 }
 
+/// Returns a single workspace by UUID including its subscription status. Admin only.
 pub async fn get_workspace(configuration: &configuration::Configuration, workspace_uuid: &str) -> Result<models::Workspace, Error<GetWorkspaceError>> {
     let local_var_configuration = configuration;
 
@@ -251,7 +261,7 @@ pub async fn get_workspace(configuration: &configuration::Configuration, workspa
 }
 
 /// Returns a paginated list of all workspaces. Admin only.
-pub async fn list_workspaces(configuration: &configuration::Configuration, keyword: Option<&str>, subscription_status: Option<&str>, access_status: Option<&str>) -> Result<models::ListWorkspaces200Response, Error<ListWorkspacesError>> {
+pub async fn list_workspaces(configuration: &configuration::Configuration, keyword: Option<&str>, subscription_status: Option<&str>, access_status: Option<&str>, page: Option<i32>) -> Result<models::ListWorkspaces200Response, Error<ListWorkspacesError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -267,6 +277,9 @@ pub async fn list_workspaces(configuration: &configuration::Configuration, keywo
     }
     if let Some(ref local_var_str) = access_status {
         local_var_req_builder = local_var_req_builder.query(&[("access_status", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = page {
+        local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
     }
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -290,6 +303,7 @@ pub async fn list_workspaces(configuration: &configuration::Configuration, keywo
     }
 }
 
+/// Removes a user's access to the workspace. The user account is not deleted. Admin only.
 pub async fn remove_user_from_workspace(configuration: &configuration::Configuration, workspace_uuid: &str, remove_user_from_workspace_request: models::RemoveUserFromWorkspaceRequest) -> Result<serde_json::Value, Error<RemoveUserFromWorkspaceError>> {
     let local_var_configuration = configuration;
 
@@ -321,6 +335,7 @@ pub async fn remove_user_from_workspace(configuration: &configuration::Configura
     }
 }
 
+/// Updates a workspace's name, color, or access status. Admin only.
 pub async fn update_workspace(configuration: &configuration::Configuration, workspace_uuid: &str, workspace_input: models::WorkspaceInput) -> Result<serde_json::Value, Error<UpdateWorkspaceError>> {
     let local_var_configuration = configuration;
 
@@ -352,6 +367,7 @@ pub async fn update_workspace(configuration: &configuration::Configuration, work
     }
 }
 
+/// Changes a user's role or permissions within the workspace. Admin only.
 pub async fn update_workspace_user(configuration: &configuration::Configuration, workspace_uuid: &str, workspace_user_input: models::WorkspaceUserInput) -> Result<serde_json::Value, Error<UpdateWorkspaceUserError>> {
     let local_var_configuration = configuration;
 

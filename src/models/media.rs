@@ -13,38 +13,38 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Media {
-    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
-    pub id: Option<i32>,
-    #[serde(rename = "uuid", skip_serializing_if = "Option::is_none")]
-    pub uuid: Option<uuid::Uuid>,
-    #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
-    #[serde(rename = "mime_type", skip_serializing_if = "Option::is_none")]
-    pub mime_type: Option<String>,
-    #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
-    pub r#type: Option<Type>,
-    #[serde(rename = "url", skip_serializing_if = "Option::is_none")]
-    pub url: Option<String>,
+    #[serde(rename = "id")]
+    pub id: i32,
+    #[serde(rename = "uuid")]
+    pub uuid: uuid::Uuid,
+    #[serde(rename = "name")]
+    pub name: String,
+    #[serde(rename = "mime_type")]
+    pub mime_type: String,
+    #[serde(rename = "type")]
+    pub r#type: Type,
+    #[serde(rename = "url")]
+    pub url: String,
     #[serde(rename = "thumb_url", skip_serializing_if = "Option::is_none")]
     pub thumb_url: Option<String>,
-    #[serde(rename = "is_video", skip_serializing_if = "Option::is_none")]
-    pub is_video: Option<bool>,
-    #[serde(rename = "created_at", skip_serializing_if = "Option::is_none")]
-    pub created_at: Option<String>,
+    #[serde(rename = "is_video")]
+    pub is_video: bool,
+    #[serde(rename = "created_at")]
+    pub created_at: String,
 }
 
 impl Media {
-    pub fn new() -> Media {
+    pub fn new(id: i32, uuid: uuid::Uuid, name: String, mime_type: String, r#type: Type, url: String, is_video: bool, created_at: String) -> Media {
         Media {
-            id: None,
-            uuid: None,
-            name: None,
-            mime_type: None,
-            r#type: None,
-            url: None,
+            id,
+            uuid,
+            name,
+            mime_type,
+            r#type,
+            url,
             thumb_url: None,
-            is_video: None,
-            created_at: None,
+            is_video,
+            created_at,
         }
     }
 }

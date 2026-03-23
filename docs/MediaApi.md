@@ -175,7 +175,7 @@ Name | Type | Description  | Required | Notes
 
 ## initiate_chunked_upload
 
-> models::InitiateChunkedUpload200Response initiate_chunked_upload(workspace_uuid, initiate_chunked_upload_request)
+> models::InitiateChunkedUpload201Response initiate_chunked_upload(workspace_uuid, initiate_chunked_upload_request)
 Initiate chunked upload
 
 Start a chunked upload session for large files. Returns an `upload_uuid`, `chunk_size`, and `total_chunks` to use for subsequent chunk requests. 
@@ -190,7 +190,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::InitiateChunkedUpload200Response**](initiateChunkedUpload_200_response.md)
+[**models::InitiateChunkedUpload201Response**](initiateChunkedUpload_201_response.md)
 
 ### Authorization
 
@@ -206,7 +206,7 @@ Name | Type | Description  | Required | Notes
 
 ## initiate_remote_upload
 
-> models::InitiateRemoteUpload200Response initiate_remote_upload(workspace_uuid, initiate_remote_upload_request)
+> models::InitiateRemoteUpload201Response initiate_remote_upload(workspace_uuid, initiate_remote_upload_request)
 Initiate remote upload
 
 Download a file from a remote URL into the media library. For small files the media object is returned immediately. For large files a `download_id` is returned — poll the status endpoint. 
@@ -221,7 +221,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::InitiateRemoteUpload200Response**](initiateRemoteUpload_200_response.md)
+[**models::InitiateRemoteUpload201Response**](initiateRemoteUpload_201_response.md)
 
 ### Authorization
 
@@ -300,7 +300,7 @@ Name | Type | Description  | Required | Notes
 
 ## upload_chunk
 
-> models::UploadChunk200Response upload_chunk(workspace_uuid, upload_uuid, chunk, chunk_index)
+> models::UploadChunk201Response upload_chunk(workspace_uuid, upload_uuid, chunk, chunk_index)
 Upload a chunk
 
 Upload a single chunk of a chunked upload session.
@@ -317,7 +317,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::UploadChunk200Response**](uploadChunk_200_response.md)
+[**models::UploadChunk201Response**](uploadChunk_201_response.md)
 
 ### Authorization
 

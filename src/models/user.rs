@@ -13,29 +13,29 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct User {
-    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
-    pub id: Option<i32>,
-    #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
-    #[serde(rename = "email", skip_serializing_if = "Option::is_none")]
-    pub email: Option<String>,
-    #[serde(rename = "is_admin", skip_serializing_if = "Option::is_none")]
-    pub is_admin: Option<bool>,
+    #[serde(rename = "id")]
+    pub id: i32,
+    #[serde(rename = "name")]
+    pub name: String,
+    #[serde(rename = "email")]
+    pub email: String,
+    #[serde(rename = "is_admin")]
+    pub is_admin: bool,
     #[serde(rename = "email_verified_at", skip_serializing_if = "Option::is_none")]
     pub email_verified_at: Option<String>,
-    #[serde(rename = "created_at", skip_serializing_if = "Option::is_none")]
-    pub created_at: Option<String>,
+    #[serde(rename = "created_at")]
+    pub created_at: String,
 }
 
 impl User {
-    pub fn new() -> User {
+    pub fn new(id: i32, name: String, email: String, is_admin: bool, created_at: String) -> User {
         User {
-            id: None,
-            name: None,
-            email: None,
-            is_admin: None,
+            id,
+            name,
+            email,
+            is_admin,
             email_verified_at: None,
-            created_at: None,
+            created_at,
         }
     }
 }

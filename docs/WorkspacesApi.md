@@ -21,6 +21,8 @@ Method | HTTP request | Description
 > serde_json::Value add_user_to_workspace(workspace_uuid, workspace_user_input)
 Add user to workspace
 
+Adds an existing user to the workspace with a specified role. Admin only.
+
 ### Parameters
 
 
@@ -80,6 +82,8 @@ Name | Type | Description  | Required | Notes
 > serde_json::Value delete_workspace(workspace_uuid)
 Delete workspace
 
+Permanently deletes a single workspace and all its associated data. Admin only.
+
 ### Parameters
 
 
@@ -107,6 +111,8 @@ Name | Type | Description  | Required | Notes
 
 > serde_json::Value delete_workspaces_bulk(delete_workspaces_bulk_request)
 Delete workspaces (bulk)
+
+Permanently deletes one or more workspaces and all their associated data. Admin only.
 
 ### Parameters
 
@@ -136,6 +142,8 @@ Name | Type | Description  | Required | Notes
 > models::Workspace get_workspace(workspace_uuid)
 Get workspace
 
+Returns a single workspace by UUID including its subscription status. Admin only.
+
 ### Parameters
 
 
@@ -161,7 +169,7 @@ Name | Type | Description  | Required | Notes
 
 ## list_workspaces
 
-> models::ListWorkspaces200Response list_workspaces(keyword, subscription_status, access_status)
+> models::ListWorkspaces200Response list_workspaces(keyword, subscription_status, access_status, page)
 List workspaces
 
 Returns a paginated list of all workspaces. Admin only.
@@ -174,6 +182,7 @@ Name | Type | Description  | Required | Notes
 **keyword** | Option<**String**> |  |  |
 **subscription_status** | Option<**String**> |  |  |
 **access_status** | Option<**String**> |  |  |
+**page** | Option<**i32**> | Page number (15 items per page). |  |[default to 1]
 
 ### Return type
 
@@ -195,6 +204,8 @@ Name | Type | Description  | Required | Notes
 
 > serde_json::Value remove_user_from_workspace(workspace_uuid, remove_user_from_workspace_request)
 Remove user from workspace
+
+Removes a user's access to the workspace. The user account is not deleted. Admin only.
 
 ### Parameters
 
@@ -225,6 +236,8 @@ Name | Type | Description  | Required | Notes
 > serde_json::Value update_workspace(workspace_uuid, workspace_input)
 Update workspace
 
+Updates a workspace's name, color, or access status. Admin only.
+
 ### Parameters
 
 
@@ -253,6 +266,8 @@ Name | Type | Description  | Required | Notes
 
 > serde_json::Value update_workspace_user(workspace_uuid, workspace_user_input)
 Update user role in workspace
+
+Changes a user's role or permissions within the workspace. Admin only.
 
 ### Parameters
 

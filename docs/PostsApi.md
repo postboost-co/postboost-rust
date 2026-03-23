@@ -114,6 +114,8 @@ Name | Type | Description  | Required | Notes
 > models::DeleteResult delete_post(workspace_uuid, post_uuid, delete_post_request)
 Delete post
 
+Deletes a post. Use `delete_mode` to control whether to also remove the published content from social platforms.
+
 ### Parameters
 
 
@@ -174,6 +176,8 @@ Name | Type | Description  | Required | Notes
 
 > models::Post get_post(workspace_uuid, post_uuid)
 Get post
+
+Returns a single post with all its versions and associated accounts.
 
 ### Parameters
 
@@ -266,6 +270,8 @@ Name | Type | Description  | Required | Notes
 
 > serde_json::Value update_post(workspace_uuid, post_uuid, post_input)
 Update post
+
+Replaces a post's versions, accounts, tags, and scheduling options. The post must not be in a published state.
 
 ### Parameters
 

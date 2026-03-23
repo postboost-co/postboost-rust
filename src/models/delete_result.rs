@@ -13,20 +13,20 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct DeleteResult {
-    #[serde(rename = "deleted", skip_serializing_if = "Option::is_none")]
-    pub deleted: Option<bool>,
-    #[serde(rename = "deleted_from_app", skip_serializing_if = "Option::is_none")]
-    pub deleted_from_app: Option<bool>,
-    #[serde(rename = "to_trash", skip_serializing_if = "Option::is_none")]
-    pub to_trash: Option<bool>,
+    #[serde(rename = "deleted")]
+    pub deleted: bool,
+    #[serde(rename = "deleted_from_app")]
+    pub deleted_from_app: bool,
+    #[serde(rename = "to_trash")]
+    pub to_trash: bool,
 }
 
 impl DeleteResult {
-    pub fn new() -> DeleteResult {
+    pub fn new(deleted: bool, deleted_from_app: bool, to_trash: bool) -> DeleteResult {
         DeleteResult {
-            deleted: None,
-            deleted_from_app: None,
-            to_trash: None,
+            deleted,
+            deleted_from_app,
+            to_trash,
         }
     }
 }

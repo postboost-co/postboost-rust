@@ -20,6 +20,7 @@ use super::{Error, configuration};
 #[serde(untagged)]
 pub enum AddGenericSubscriptionError {
     Status401(serde_json::Value),
+    Status403(serde_json::Value),
     UnknownValue(serde_json::Value),
 }
 
@@ -28,6 +29,7 @@ pub enum AddGenericSubscriptionError {
 #[serde(untagged)]
 pub enum CancelSubscriptionError {
     Status401(serde_json::Value),
+    Status403(serde_json::Value),
     UnknownValue(serde_json::Value),
 }
 
@@ -36,6 +38,7 @@ pub enum CancelSubscriptionError {
 #[serde(untagged)]
 pub enum ChangeSubscriptionPlanError {
     Status401(serde_json::Value),
+    Status403(serde_json::Value),
     UnknownValue(serde_json::Value),
 }
 
@@ -44,6 +47,7 @@ pub enum ChangeSubscriptionPlanError {
 #[serde(untagged)]
 pub enum CheckoutSubscriptionError {
     Status401(serde_json::Value),
+    Status403(serde_json::Value),
     UnknownValue(serde_json::Value),
 }
 
@@ -52,6 +56,7 @@ pub enum CheckoutSubscriptionError {
 #[serde(untagged)]
 pub enum CreateSubscriptionError {
     Status401(serde_json::Value),
+    Status403(serde_json::Value),
     Status422(serde_json::Value),
     UnknownValue(serde_json::Value),
 }
@@ -61,6 +66,7 @@ pub enum CreateSubscriptionError {
 #[serde(untagged)]
 pub enum DeleteSubscriptionError {
     Status401(serde_json::Value),
+    Status403(serde_json::Value),
     UnknownValue(serde_json::Value),
 }
 
@@ -69,6 +75,7 @@ pub enum DeleteSubscriptionError {
 #[serde(untagged)]
 pub enum GetSubscriptionError {
     Status401(serde_json::Value),
+    Status403(serde_json::Value),
     UnknownValue(serde_json::Value),
 }
 
@@ -77,6 +84,7 @@ pub enum GetSubscriptionError {
 #[serde(untagged)]
 pub enum RemoveGenericSubscriptionError {
     Status401(serde_json::Value),
+    Status403(serde_json::Value),
     UnknownValue(serde_json::Value),
 }
 
@@ -85,6 +93,7 @@ pub enum RemoveGenericSubscriptionError {
 #[serde(untagged)]
 pub enum ResumeSubscriptionError {
     Status401(serde_json::Value),
+    Status403(serde_json::Value),
     UnknownValue(serde_json::Value),
 }
 
@@ -93,10 +102,12 @@ pub enum ResumeSubscriptionError {
 #[serde(untagged)]
 pub enum UpdateSubscriptionError {
     Status401(serde_json::Value),
+    Status403(serde_json::Value),
     UnknownValue(serde_json::Value),
 }
 
 
+/// Assigns a non-Stripe (generic) subscription plan to the workspace, optionally granting a trial period. Used for AppSumo-style lifetime deals. Admin only.
 pub async fn add_generic_subscription(configuration: &configuration::Configuration, workspace_uuid: &str, add_generic_subscription_request: models::AddGenericSubscriptionRequest) -> Result<serde_json::Value, Error<AddGenericSubscriptionError>> {
     let local_var_configuration = configuration;
 
@@ -128,6 +139,7 @@ pub async fn add_generic_subscription(configuration: &configuration::Configurati
     }
 }
 
+/// Cancels the workspace's Stripe subscription at the end of the current billing period. Admin only.
 pub async fn cancel_subscription(configuration: &configuration::Configuration, workspace_uuid: &str) -> Result<serde_json::Value, Error<CancelSubscriptionError>> {
     let local_var_configuration = configuration;
 
@@ -158,6 +170,7 @@ pub async fn cancel_subscription(configuration: &configuration::Configuration, w
     }
 }
 
+/// Switches the workspace to a different Stripe plan. Optionally prorates the change and bills immediately. Admin only.
 pub async fn change_subscription_plan(configuration: &configuration::Configuration, workspace_uuid: &str, change_subscription_plan_request: models::ChangeSubscriptionPlanRequest) -> Result<serde_json::Value, Error<ChangeSubscriptionPlanError>> {
     let local_var_configuration = configuration;
 
@@ -221,6 +234,7 @@ pub async fn checkout_subscription(configuration: &configuration::Configuration,
     }
 }
 
+/// Manually creates a subscription record for the workspace (for external billing integrations). Admin only.
 pub async fn create_subscription(configuration: &configuration::Configuration, workspace_uuid: &str, subscription_input: models::SubscriptionInput) -> Result<serde_json::Value, Error<CreateSubscriptionError>> {
     let local_var_configuration = configuration;
 
@@ -252,6 +266,7 @@ pub async fn create_subscription(configuration: &configuration::Configuration, w
     }
 }
 
+/// Removes the subscription record from the workspace. Admin only.
 pub async fn delete_subscription(configuration: &configuration::Configuration, workspace_uuid: &str) -> Result<serde_json::Value, Error<DeleteSubscriptionError>> {
     let local_var_configuration = configuration;
 
@@ -282,6 +297,7 @@ pub async fn delete_subscription(configuration: &configuration::Configuration, w
     }
 }
 
+/// Returns the active subscription for the workspace, or `null` if none exists. Admin only.
 pub async fn get_subscription(configuration: &configuration::Configuration, workspace_uuid: &str) -> Result<models::Subscription, Error<GetSubscriptionError>> {
     let local_var_configuration = configuration;
 
@@ -312,6 +328,7 @@ pub async fn get_subscription(configuration: &configuration::Configuration, work
     }
 }
 
+/// Removes the generic (non-Stripe) subscription from the workspace. Admin only.
 pub async fn remove_generic_subscription(configuration: &configuration::Configuration, workspace_uuid: &str) -> Result<serde_json::Value, Error<RemoveGenericSubscriptionError>> {
     let local_var_configuration = configuration;
 
@@ -342,6 +359,7 @@ pub async fn remove_generic_subscription(configuration: &configuration::Configur
     }
 }
 
+/// Resumes a previously canceled subscription before it expires. Admin only.
 pub async fn resume_subscription(configuration: &configuration::Configuration, workspace_uuid: &str) -> Result<serde_json::Value, Error<ResumeSubscriptionError>> {
     let local_var_configuration = configuration;
 
@@ -372,6 +390,7 @@ pub async fn resume_subscription(configuration: &configuration::Configuration, w
     }
 }
 
+/// Updates the plan ID, status, or trial/pause dates of an existing subscription. Admin only.
 pub async fn update_subscription(configuration: &configuration::Configuration, workspace_uuid: &str, subscription_update_input: models::SubscriptionUpdateInput) -> Result<serde_json::Value, Error<UpdateSubscriptionError>> {
     let local_var_configuration = configuration;
 

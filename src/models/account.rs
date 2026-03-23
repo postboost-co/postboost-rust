@@ -13,39 +13,39 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Account {
-    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
-    pub id: Option<i32>,
-    #[serde(rename = "uuid", skip_serializing_if = "Option::is_none")]
-    pub uuid: Option<uuid::Uuid>,
-    #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
-    #[serde(rename = "username", skip_serializing_if = "Option::is_none")]
-    pub username: Option<String>,
+    #[serde(rename = "id")]
+    pub id: i32,
+    #[serde(rename = "uuid")]
+    pub uuid: uuid::Uuid,
+    #[serde(rename = "name")]
+    pub name: String,
+    #[serde(rename = "username")]
+    pub username: String,
     #[serde(rename = "image", skip_serializing_if = "Option::is_none")]
     pub image: Option<String>,
-    #[serde(rename = "provider", skip_serializing_if = "Option::is_none")]
-    pub provider: Option<Provider>,
+    #[serde(rename = "provider")]
+    pub provider: Provider,
     /// Provider-specific metadata.
-    #[serde(rename = "data", skip_serializing_if = "Option::is_none")]
-    pub data: Option<serde_json::Value>,
-    #[serde(rename = "authorized", skip_serializing_if = "Option::is_none")]
-    pub authorized: Option<bool>,
-    #[serde(rename = "created_at", skip_serializing_if = "Option::is_none")]
-    pub created_at: Option<String>,
+    #[serde(rename = "data")]
+    pub data: serde_json::Value,
+    #[serde(rename = "authorized")]
+    pub authorized: bool,
+    #[serde(rename = "created_at")]
+    pub created_at: String,
 }
 
 impl Account {
-    pub fn new() -> Account {
+    pub fn new(id: i32, uuid: uuid::Uuid, name: String, username: String, provider: Provider, data: serde_json::Value, authorized: bool, created_at: String) -> Account {
         Account {
-            id: None,
-            uuid: None,
-            name: None,
-            username: None,
+            id,
+            uuid,
+            name,
+            username,
             image: None,
-            provider: None,
-            data: None,
-            authorized: None,
-            created_at: None,
+            provider,
+            data,
+            authorized,
+            created_at,
         }
     }
 }

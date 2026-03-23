@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | Option<**i32**> |  | [optional]
-**uuid** | Option<[**uuid::Uuid**](uuid::Uuid.md)> |  | [optional]
-**name** | Option<**String**> |  | [optional]
-**hex_color** | Option<**String**> |  | [optional]
+**id** | **i32** |  | 
+**uuid** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
+**name** | **String** |  | 
+**hex_color** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

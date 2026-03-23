@@ -20,6 +20,7 @@ use super::{Error, configuration};
 #[serde(untagged)]
 pub enum CreateUserError {
     Status401(serde_json::Value),
+    Status403(serde_json::Value),
     Status422(serde_json::Value),
     UnknownValue(serde_json::Value),
 }
@@ -30,6 +31,7 @@ pub enum CreateUserError {
 pub enum DeleteUserError {
     Status400(models::DeleteUser400Response),
     Status401(serde_json::Value),
+    Status403(serde_json::Value),
     UnknownValue(serde_json::Value),
 }
 
@@ -38,6 +40,7 @@ pub enum DeleteUserError {
 #[serde(untagged)]
 pub enum DeleteUsersBulkError {
     Status401(serde_json::Value),
+    Status403(serde_json::Value),
     UnknownValue(serde_json::Value),
 }
 
@@ -46,6 +49,7 @@ pub enum DeleteUsersBulkError {
 #[serde(untagged)]
 pub enum GetUserError {
     Status401(serde_json::Value),
+    Status403(serde_json::Value),
     Status404(serde_json::Value),
     UnknownValue(serde_json::Value),
 }
@@ -64,11 +68,13 @@ pub enum ListUsersError {
 #[serde(untagged)]
 pub enum UpdateUserError {
     Status401(serde_json::Value),
+    Status403(serde_json::Value),
     Status422(serde_json::Value),
     UnknownValue(serde_json::Value),
 }
 
 
+/// Creates a new user account on the platform. Admin only.
 pub async fn create_user(configuration: &configuration::Configuration, user_input: models::UserInput) -> Result<models::User, Error<CreateUserError>> {
     let local_var_configuration = configuration;
 
@@ -100,6 +106,7 @@ pub async fn create_user(configuration: &configuration::Configuration, user_inpu
     }
 }
 
+/// Permanently deletes a user account. Returns 400 if you attempt to delete your own account. Admin only.
 pub async fn delete_user(configuration: &configuration::Configuration, user_id: i32) -> Result<serde_json::Value, Error<DeleteUserError>> {
     let local_var_configuration = configuration;
 
@@ -130,6 +137,7 @@ pub async fn delete_user(configuration: &configuration::Configuration, user_id: 
     }
 }
 
+/// Permanently deletes one or more user accounts. You cannot delete your own account. Admin only.
 pub async fn delete_users_bulk(configuration: &configuration::Configuration, delete_users_bulk_request: models::DeleteUsersBulkRequest) -> Result<serde_json::Value, Error<DeleteUsersBulkError>> {
     let local_var_configuration = configuration;
 
@@ -161,6 +169,7 @@ pub async fn delete_users_bulk(configuration: &configuration::Configuration, del
     }
 }
 
+/// Returns a single user account by ID. Admin only.
 pub async fn get_user(configuration: &configuration::Configuration, user_id: i32) -> Result<models::User, Error<GetUserError>> {
     let local_var_configuration = configuration;
 
@@ -191,7 +200,8 @@ pub async fn get_user(configuration: &configuration::Configuration, user_id: i32
     }
 }
 
-pub async fn list_users(configuration: &configuration::Configuration, keyword: Option<&str>) -> Result<models::ListUsers200Response, Error<ListUsersError>> {
+/// Returns a paginated list of all users on the platform. Optionally filter by name or email. Admin only.
+pub async fn list_users(configuration: &configuration::Configuration, keyword: Option<&str>, page: Option<i32>) -> Result<models::ListUsers200Response, Error<ListUsersError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -201,6 +211,9 @@ pub async fn list_users(configuration: &configuration::Configuration, keyword: O
 
     if let Some(ref local_var_str) = keyword {
         local_var_req_builder = local_var_req_builder.query(&[("keyword", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = page {
+        local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
     }
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -224,6 +237,7 @@ pub async fn list_users(configuration: &configuration::Configuration, keyword: O
     }
 }
 
+/// Updates a user's name, email, admin status, or password. Admin only.
 pub async fn update_user(configuration: &configuration::Configuration, user_id: i32, user_update_input: models::UserUpdateInput) -> Result<serde_json::Value, Error<UpdateUserError>> {
     let local_var_configuration = configuration;
 

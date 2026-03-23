@@ -18,6 +18,8 @@ Method | HTTP request | Description
 > models::Receipt create_receipt(receipt_input)
 Create receipt
 
+Creates a billing receipt record for a workspace. Admin only.
+
 ### Parameters
 
 
@@ -45,6 +47,8 @@ Name | Type | Description  | Required | Notes
 
 > serde_json::Value delete_receipt(receipt_uuid)
 Delete receipt
+
+Permanently deletes a single receipt. Admin only.
 
 ### Parameters
 
@@ -74,6 +78,8 @@ Name | Type | Description  | Required | Notes
 > serde_json::Value delete_receipts_bulk(delete_receipts_bulk_request)
 Delete receipts (bulk)
 
+Permanently deletes one or more receipt records. Admin only.
+
 ### Parameters
 
 
@@ -102,6 +108,8 @@ Name | Type | Description  | Required | Notes
 > models::Receipt get_receipt(receipt_uuid)
 Get receipt
 
+Returns a single receipt by UUID. Admin only.
+
 ### Parameters
 
 
@@ -127,8 +135,10 @@ Name | Type | Description  | Required | Notes
 
 ## list_receipts
 
-> models::ListReceipts200Response list_receipts(workspace_uuid, invoice_number)
+> models::ListReceipts200Response list_receipts(workspace_uuid, invoice_number, page)
 List receipts
+
+Returns a paginated list of billing receipts. Filter by workspace UUID or invoice number. Admin only.
 
 ### Parameters
 
@@ -137,6 +147,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **workspace_uuid** | Option<**uuid::Uuid**> |  |  |
 **invoice_number** | Option<**String**> |  |  |
+**page** | Option<**i32**> | Page number (15 items per page). |  |[default to 1]
 
 ### Return type
 
@@ -158,6 +169,8 @@ Name | Type | Description  | Required | Notes
 
 > serde_json::Value update_receipt(receipt_uuid, receipt_update_input)
 Update receipt
+
+Updates a receipt's transaction details, amount, or payment date. Admin only.
 
 ### Parameters
 

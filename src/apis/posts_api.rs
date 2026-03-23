@@ -191,6 +191,7 @@ pub async fn create_post(configuration: &configuration::Configuration, workspace
     }
 }
 
+/// Deletes a post. Use `delete_mode` to control whether to also remove the published content from social platforms.
 pub async fn delete_post(configuration: &configuration::Configuration, workspace_uuid: &str, post_uuid: &str, delete_post_request: Option<models::DeletePostRequest>) -> Result<models::DeleteResult, Error<DeletePostError>> {
     let local_var_configuration = configuration;
 
@@ -254,6 +255,7 @@ pub async fn delete_posts_bulk(configuration: &configuration::Configuration, wor
     }
 }
 
+/// Returns a single post with all its versions and associated accounts.
 pub async fn get_post(configuration: &configuration::Configuration, workspace_uuid: &str, post_uuid: &str) -> Result<models::Post, Error<GetPostError>> {
     let local_var_configuration = configuration;
 
@@ -350,6 +352,7 @@ pub async fn schedule_post(configuration: &configuration::Configuration, workspa
     }
 }
 
+/// Replaces a post's versions, accounts, tags, and scheduling options. The post must not be in a published state.
 pub async fn update_post(configuration: &configuration::Configuration, workspace_uuid: &str, post_uuid: &str, post_input: models::PostInput) -> Result<serde_json::Value, Error<UpdatePostError>> {
     let local_var_configuration = configuration;
 
