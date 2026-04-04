@@ -12,21 +12,15 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct ListUsers200Response {
-    #[serde(rename = "links", skip_serializing_if = "Option::is_none")]
-    pub links: Option<Box<models::PaginationMetaLinks>>,
-    #[serde(rename = "meta", skip_serializing_if = "Option::is_none")]
-    pub meta: Option<Box<models::PaginationMetaMeta>>,
-    #[serde(rename = "data", skip_serializing_if = "Option::is_none")]
-    pub data: Option<Vec<models::User>>,
+pub struct BlogToSocial429Response {
+    #[serde(rename = "message", skip_serializing_if = "Option::is_none")]
+    pub message: Option<String>,
 }
 
-impl ListUsers200Response {
-    pub fn new() -> ListUsers200Response {
-        ListUsers200Response {
-            links: None,
-            meta: None,
-            data: None,
+impl BlogToSocial429Response {
+    pub fn new() -> BlogToSocial429Response {
+        BlogToSocial429Response {
+            message: None,
         }
     }
 }

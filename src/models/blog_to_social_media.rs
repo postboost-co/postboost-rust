@@ -11,22 +11,23 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
+/// BlogToSocialMedia : The imported featured image. Only present when `create_post` was `true` and an image was available.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct ListUsers200Response {
-    #[serde(rename = "links", skip_serializing_if = "Option::is_none")]
-    pub links: Option<Box<models::PaginationMetaLinks>>,
-    #[serde(rename = "meta", skip_serializing_if = "Option::is_none")]
-    pub meta: Option<Box<models::PaginationMetaMeta>>,
-    #[serde(rename = "data", skip_serializing_if = "Option::is_none")]
-    pub data: Option<Vec<models::User>>,
+pub struct BlogToSocialMedia {
+    /// Media library ID of the imported image.
+    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
+    pub id: Option<i32>,
+    /// Public URL of the imported image in the workspace media library.
+    #[serde(rename = "url", skip_serializing_if = "Option::is_none")]
+    pub url: Option<String>,
 }
 
-impl ListUsers200Response {
-    pub fn new() -> ListUsers200Response {
-        ListUsers200Response {
-            links: None,
-            meta: None,
-            data: None,
+impl BlogToSocialMedia {
+    /// The imported featured image. Only present when `create_post` was `true` and an image was available.
+    pub fn new() -> BlogToSocialMedia {
+        BlogToSocialMedia {
+            id: None,
+            url: None,
         }
     }
 }
