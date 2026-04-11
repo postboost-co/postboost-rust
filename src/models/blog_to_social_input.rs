@@ -78,33 +78,35 @@ impl BlogToSocialInput {
 /// Target social media platforms. Only connected accounts matching these platforms are used. If omitted, all connected accounts in the workspace are targeted. 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum Platforms {
-    #[serde(rename = "facebook")]
-    Facebook,
+    #[serde(rename = "twitter")]
+    Twitter,
+    #[serde(rename = "facebook_page")]
+    FacebookPage,
     #[serde(rename = "instagram")]
     Instagram,
-    #[serde(rename = "x")]
-    X,
-    #[serde(rename = "linkedin")]
-    Linkedin,
-    #[serde(rename = "pinterest")]
-    Pinterest,
-    #[serde(rename = "youtube")]
-    Youtube,
-    #[serde(rename = "tiktok")]
-    Tiktok,
-    #[serde(rename = "mastodon")]
-    Mastodon,
     #[serde(rename = "threads")]
     Threads,
+    #[serde(rename = "mastodon")]
+    Mastodon,
+    #[serde(rename = "youtube")]
+    Youtube,
+    #[serde(rename = "gbp")]
+    Gbp,
+    #[serde(rename = "pinterest")]
+    Pinterest,
+    #[serde(rename = "linkedin")]
+    Linkedin,
+    #[serde(rename = "linkedin_page")]
+    LinkedinPage,
+    #[serde(rename = "tiktok")]
+    Tiktok,
     #[serde(rename = "bluesky")]
     Bluesky,
-    #[serde(rename = "google_business")]
-    GoogleBusiness,
 }
 
 impl Default for Platforms {
     fn default() -> Platforms {
-        Self::Facebook
+        Self::Twitter
     }
 }
 /// Writing tone for all generated captions.
