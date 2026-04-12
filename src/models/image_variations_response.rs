@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ImageVariationsResponse {
     #[serde(rename = "images")]
-    pub images: Vec<models::GeneratedImageItem>,
+    pub images: Vec<models::Media>,
     #[serde(rename = "aspect_ratio")]
     pub aspect_ratio: String,
     #[serde(rename = "quality")]
@@ -26,7 +26,7 @@ pub struct ImageVariationsResponse {
 }
 
 impl ImageVariationsResponse {
-    pub fn new(images: Vec<models::GeneratedImageItem>, aspect_ratio: String, quality: String, credits_used: i32) -> ImageVariationsResponse {
+    pub fn new(images: Vec<models::Media>, aspect_ratio: String, quality: String, credits_used: i32) -> ImageVariationsResponse {
         ImageVariationsResponse {
             images,
             aspect_ratio,

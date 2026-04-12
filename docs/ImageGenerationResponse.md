@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**images** | [**Vec<models::GeneratedImageItem>**](GeneratedImageItem.md) |  | 
+**images** | [**Vec<models::Media>**](Media.md) |  | 
 **prompt_used** | **String** |  | 
 **revised_prompt** | Option<**String**> |  | [optional]
 **aspect_ratio** | **String** |  | 

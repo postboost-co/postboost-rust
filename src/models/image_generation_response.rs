@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ImageGenerationResponse {
     #[serde(rename = "images")]
-    pub images: Vec<models::GeneratedImageItem>,
+    pub images: Vec<models::Media>,
     #[serde(rename = "prompt_used")]
     pub prompt_used: String,
     #[serde(rename = "revised_prompt", skip_serializing_if = "Option::is_none")]
@@ -30,7 +30,7 @@ pub struct ImageGenerationResponse {
 }
 
 impl ImageGenerationResponse {
-    pub fn new(images: Vec<models::GeneratedImageItem>, prompt_used: String, aspect_ratio: String, quality: String, credits_used: i32) -> ImageGenerationResponse {
+    pub fn new(images: Vec<models::Media>, prompt_used: String, aspect_ratio: String, quality: String, credits_used: i32) -> ImageGenerationResponse {
         ImageGenerationResponse {
             images,
             prompt_used,

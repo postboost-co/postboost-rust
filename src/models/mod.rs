@@ -38,8 +38,6 @@ pub mod delete_users_bulk_request;
 pub use self::delete_users_bulk_request::DeleteUsersBulkRequest;
 pub mod delete_workspaces_bulk_request;
 pub use self::delete_workspaces_bulk_request::DeleteWorkspacesBulkRequest;
-pub mod generated_image_item;
-pub use self::generated_image_item::GeneratedImageItem;
 pub mod get_remote_upload_status_200_response;
 pub use self::get_remote_upload_status_200_response::GetRemoteUploadStatus200Response;
 pub mod image_alt_text_200_response;
