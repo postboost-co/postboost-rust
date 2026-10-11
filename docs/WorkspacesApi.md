@@ -9,6 +9,8 @@ Method | HTTP request | Description
 [**delete_workspace**](WorkspacesApi.md#delete_workspace) | **DELETE** /panel/workspaces/{workspaceUuid} | Delete workspace
 [**delete_workspaces_bulk**](WorkspacesApi.md#delete_workspaces_bulk) | **DELETE** /panel/workspaces | Delete workspaces (bulk)
 [**get_workspace**](WorkspacesApi.md#get_workspace) | **GET** /panel/workspaces/{workspaceUuid} | Get workspace
+[**get_workspace_ai_credits**](WorkspacesApi.md#get_workspace_ai_credits) | **GET** /panel/workspaces/{workspaceUuid}/ai-credits | Get workspace AI credits
+[**list_my_workspaces**](WorkspacesApi.md#list_my_workspaces) | **GET** /workspaces | List my workspaces
 [**list_workspaces**](WorkspacesApi.md#list_workspaces) | **GET** /panel/workspaces | List workspaces
 [**remove_user_from_workspace**](WorkspacesApi.md#remove_user_from_workspace) | **DELETE** /panel/workspaces/{workspaceUuid}/users | Remove user from workspace
 [**update_workspace**](WorkspacesApi.md#update_workspace) | **PUT** /panel/workspaces/{workspaceUuid} | Update workspace
@@ -167,6 +169,63 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## get_workspace_ai_credits
+
+> models::AiCredits get_workspace_ai_credits(workspace_uuid)
+Get workspace AI credits
+
+Returns whether the workspace can use AI credits, its remaining balance, and whether the balance is low. Admin only.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**workspace_uuid** | **uuid::Uuid** | UUID of the workspace. | [required] |
+
+### Return type
+
+[**models::AiCredits**](AICredits.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## list_my_workspaces
+
+> models::ListMyWorkspaces200Response list_my_workspaces()
+List my workspaces
+
+Returns the workspaces the authenticated user belongs to, most recently updated first, with the caller's role in each. Use a returned `uuid` as `workspaceUuid`.
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**models::ListMyWorkspaces200Response**](listMyWorkspaces_200_response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## list_workspaces
 
 > models::ListWorkspaces200Response list_workspaces(keyword, subscription_status, access_status, page)
@@ -236,7 +295,7 @@ Name | Type | Description  | Required | Notes
 > serde_json::Value update_workspace(workspace_uuid, workspace_input)
 Update workspace
 
-Updates a workspace's name, color, or access status. Admin only.
+Updates a workspace's name, owner, or access status. Admin only. `hex_color` is accepted but ignored.
 
 ### Parameters
 

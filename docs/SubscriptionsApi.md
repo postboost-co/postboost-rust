@@ -50,10 +50,10 @@ Name | Type | Description  | Required | Notes
 
 ## cancel_subscription
 
-> serde_json::Value cancel_subscription(workspace_uuid)
+> serde_json::Value cancel_subscription(workspace_uuid, cancel_subscription_request)
 Cancel subscription
 
-Cancels the workspace's Stripe subscription at the end of the current billing period. Admin only.
+Cancels the workspace's Stripe subscription at the end of the current billing period, or right away with `immediately: true`. Works for active and past-due subscriptions. Admin only. 
 
 ### Parameters
 
@@ -61,6 +61,7 @@ Cancels the workspace's Stripe subscription at the end of the current billing pe
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **workspace_uuid** | **uuid::Uuid** | UUID of the workspace. | [required] |
+**cancel_subscription_request** | Option<[**CancelSubscriptionRequest**](CancelSubscriptionRequest.md)> |  |  |
 
 ### Return type
 
@@ -72,7 +73,7 @@ Name | Type | Description  | Required | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -236,7 +237,7 @@ Name | Type | Description  | Required | Notes
 > serde_json::Value remove_generic_subscription(workspace_uuid)
 Remove generic subscription
 
-Removes the generic (non-Stripe) subscription from the workspace. Admin only.
+Removes the generic (non-Stripe) subscription from the workspace. Returns `422` when the workspace has no generic subscription. Admin only.
 
 ### Parameters
 

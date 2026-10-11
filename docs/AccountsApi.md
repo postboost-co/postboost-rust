@@ -42,10 +42,10 @@ Name | Type | Description  | Required | Notes
 
 ## list_accounts
 
-> models::ListAccounts200Response list_accounts(workspace_uuid)
+> models::ListAccounts200Response list_accounts(workspace_uuid, keyword, group, providers_left_square_bracket_right_square_bracket, unauthorized)
 List accounts
 
-Returns all social media accounts connected to the workspace.
+Returns all social media accounts connected to the workspace, newest first. Optional filters narrow the list.
 
 ### Parameters
 
@@ -53,6 +53,10 @@ Returns all social media accounts connected to the workspace.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **workspace_uuid** | **uuid::Uuid** | UUID of the workspace. | [required] |
+**keyword** | Option<**String**> | Match the account name or username. |  |
+**group** | Option<**String**> | Only accounts in this account group. |  |
+**providers_left_square_bracket_right_square_bracket** | Option<[**Vec<String>**](String.md)> | Only accounts of these providers (for example `instagram`, `linkedin`). |  |
+**unauthorized** | Option<**bool**> | When `true`, only accounts that need to be reconnected. |  |
 
 ### Return type
 

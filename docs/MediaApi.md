@@ -6,13 +6,17 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**abort_chunked_upload**](MediaApi.md#abort_chunked_upload) | **DELETE** /{workspaceUuid}/media/chunked/{uploadUuid} | Abort chunked upload
 [**complete_chunked_upload**](MediaApi.md#complete_chunked_upload) | **POST** /{workspaceUuid}/media/chunked/{uploadUuid}/complete | Complete chunked upload
+[**create_media_folder**](MediaApi.md#create_media_folder) | **POST** /{workspaceUuid}/media/folders | Create media folder
 [**delete_media_bulk**](MediaApi.md#delete_media_bulk) | **DELETE** /{workspaceUuid}/media | Delete media (bulk)
+[**delete_media_folder**](MediaApi.md#delete_media_folder) | **DELETE** /{workspaceUuid}/media/folders/{folderUuid} | Delete media folder
 [**get_media**](MediaApi.md#get_media) | **GET** /{workspaceUuid}/media/{mediaUuid} | Get media
 [**get_remote_upload_status**](MediaApi.md#get_remote_upload_status) | **GET** /{workspaceUuid}/media/remote/{downloadId}/status | Get remote upload status
 [**initiate_chunked_upload**](MediaApi.md#initiate_chunked_upload) | **POST** /{workspaceUuid}/media/chunked/initiate | Initiate chunked upload
 [**initiate_remote_upload**](MediaApi.md#initiate_remote_upload) | **POST** /{workspaceUuid}/media/remote/initiate | Initiate remote upload
 [**list_media**](MediaApi.md#list_media) | **GET** /{workspaceUuid}/media | List media
+[**list_media_folders**](MediaApi.md#list_media_folders) | **GET** /{workspaceUuid}/media/folders | List media folders
 [**update_media**](MediaApi.md#update_media) | **PUT** /{workspaceUuid}/media/{mediaUuid} | Update media
+[**update_media_folder**](MediaApi.md#update_media_folder) | **PUT** /{workspaceUuid}/media/folders/{folderUuid} | Update media folder
 [**upload_chunk**](MediaApi.md#upload_chunk) | **POST** /{workspaceUuid}/media/chunked/{uploadUuid}/upload | Upload a chunk
 [**upload_media**](MediaApi.md#upload_media) | **POST** /{workspaceUuid}/media | Upload media (binary)
 
@@ -51,10 +55,10 @@ Name | Type | Description  | Required | Notes
 
 ## complete_chunked_upload
 
-> models::Media complete_chunked_upload(workspace_uuid, upload_uuid)
+> models::Media complete_chunked_upload(workspace_uuid, upload_uuid, complete_chunked_upload_request)
 Complete chunked upload
 
-Signal that all chunks have been uploaded. Returns the final media object.
+Signal that all chunks have been uploaded. Returns the final media object. A video may come back with `is_processing` set to `true` while its conversion runs.
 
 ### Parameters
 
@@ -63,6 +67,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **workspace_uuid** | **uuid::Uuid** | UUID of the workspace. | [required] |
 **upload_uuid** | **uuid::Uuid** |  | [required] |
+**complete_chunked_upload_request** | Option<[**CompleteChunkedUploadRequest**](CompleteChunkedUploadRequest.md)> |  |  |
 
 ### Return type
 
@@ -74,7 +79,38 @@ Name | Type | Description  | Required | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## create_media_folder
+
+> models::MediaFolder create_media_folder(workspace_uuid, create_media_folder_request)
+Create media folder
+
+Creates a folder at the top level or under `parent`. The name must be unique among its siblings.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**workspace_uuid** | **uuid::Uuid** | UUID of the workspace. | [required] |
+**create_media_folder_request** | [**CreateMediaFolderRequest**](CreateMediaFolderRequest.md) |  | [required] |
+
+### Return type
+
+[**models::MediaFolder**](MediaFolder.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -85,7 +121,7 @@ Name | Type | Description  | Required | Notes
 > serde_json::Value delete_media_bulk(workspace_uuid, delete_media_bulk_request)
 Delete media (bulk)
 
-Delete one or more media items by their IDs.
+Delete one or more media items by their numeric IDs or UUIDs (both may be mixed, up to 500 per request).
 
 ### Parameters
 
@@ -94,6 +130,38 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **workspace_uuid** | **uuid::Uuid** | UUID of the workspace. | [required] |
 **delete_media_bulk_request** | [**DeleteMediaBulkRequest**](DeleteMediaBulkRequest.md) |  | [required] |
+
+### Return type
+
+[**serde_json::Value**](serde_json::Value.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## delete_media_folder
+
+> serde_json::Value delete_media_folder(workspace_uuid, folder_uuid, delete_media_folder_request)
+Delete media folder
+
+Deletes a folder. By default its media and sub-folders move up to the folder's parent; with `delete_media` set to true every media item below the folder is deleted as well.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**workspace_uuid** | **uuid::Uuid** | UUID of the workspace. | [required] |
+**folder_uuid** | **uuid::Uuid** | UUID of the media folder. | [required] |
+**delete_media_folder_request** | Option<[**DeleteMediaFolderRequest**](DeleteMediaFolderRequest.md)> |  |  |
 
 ### Return type
 
@@ -237,10 +305,10 @@ Name | Type | Description  | Required | Notes
 
 ## list_media
 
-> models::ListMedia200Response list_media(workspace_uuid, page)
+> models::ListMedia200Response list_media(workspace_uuid, page, limit, folder, mime_types_left_square_bracket_right_square_bracket, r#type, keyword, usage, favorite, sort)
 List media
 
-Returns a paginated list of media assets in the workspace library.
+Returns a paginated list of media assets in the workspace library. Without `folder` every item is listed, whatever folder it is filed in. A `keyword` search always looks at the whole library and ignores `folder` and `favorite`. 
 
 ### Parameters
 
@@ -248,11 +316,49 @@ Returns a paginated list of media assets in the workspace library.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **workspace_uuid** | **uuid::Uuid** | UUID of the workspace. | [required] |
-**page** | Option<**i32**> | Page number (20 items per page). |  |[default to 1]
+**page** | Option<**i32**> | Page number. |  |[default to 1]
+**limit** | Option<**i32**> | Items per page. Values below 1 fall back to 50; values above 100 are capped at 100. |  |[default to 50]
+**folder** | Option<**String**> | Media folder UUID, or `root` for items not filed in any folder. |  |
+**mime_types_left_square_bracket_right_square_bracket** | Option<[**Vec<String>**](String.md)> | Only these MIME types (for example `image/png`). |  |
+**r#type** | Option<**String**> | Only this media type. |  |
+**keyword** | Option<**String**> | Search media by name. |  |
+**usage** | Option<**String**> | Filter by how the media is used in posts. |  |
+**favorite** | Option<**bool**> | When `true`, only media the caller marked as favorite. |  |
+**sort** | Option<**String**> |  |  |[default to newest]
 
 ### Return type
 
 [**models::ListMedia200Response**](listMedia_200_response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## list_media_folders
+
+> models::ListMediaFolders200Response list_media_folders(workspace_uuid)
+List media folders
+
+Returns the whole folder tree of the media library in one response (not paginated). Rebuild the tree from each folder's `parent`.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**workspace_uuid** | **uuid::Uuid** | UUID of the workspace. | [required] |
+
+### Return type
+
+[**models::ListMediaFolders200Response**](listMediaFolders_200_response.md)
 
 ### Authorization
 
@@ -271,7 +377,7 @@ Name | Type | Description  | Required | Notes
 > serde_json::Value update_media(workspace_uuid, media_uuid, update_media_request)
 Update media
 
-Update the alt text of a media asset.
+Update the name, alt text, or folder of a media asset. Only the keys present in the body are written. Sending `folder: null` moves the item to the library root; omitting `folder` leaves it where it is. 
 
 ### Parameters
 
@@ -285,6 +391,38 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**serde_json::Value**](serde_json::Value.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## update_media_folder
+
+> models::MediaFolder update_media_folder(workspace_uuid, folder_uuid, media_folder_input)
+Update media folder
+
+Renames a folder and/or moves it. Sending `parent` moves the folder (null = top level); omitting it keeps the current parent. A folder cannot be moved into itself or one of its descendants.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**workspace_uuid** | **uuid::Uuid** | UUID of the workspace. | [required] |
+**folder_uuid** | **uuid::Uuid** | UUID of the media folder. | [required] |
+**media_folder_input** | [**MediaFolderInput**](MediaFolderInput.md) |  | [required] |
+
+### Return type
+
+[**models::MediaFolder**](MediaFolder.md)
 
 ### Authorization
 
@@ -333,7 +471,7 @@ Name | Type | Description  | Required | Notes
 
 ## upload_media
 
-> models::Media upload_media(workspace_uuid, file, alt_text)
+> models::Media upload_media(workspace_uuid, file, alt_text, folder)
 Upload media (binary)
 
 Upload a file directly as multipart form data.
@@ -346,6 +484,7 @@ Name | Type | Description  | Required | Notes
 **workspace_uuid** | **uuid::Uuid** | UUID of the workspace. | [required] |
 **file** | **std::path::PathBuf** | The file to upload. | [required] |
 **alt_text** | Option<**String**> | Alternative text for accessibility. |  |
+**folder** | Option<**uuid::Uuid**> | UUID of the media folder to file the upload in. Omit or null for the library root. |  |
 
 ### Return type
 
