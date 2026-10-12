@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## create_tag
 
-> models::Tag create_tag(workspace_uuid, tag_input)
+> models::Tag create_tag(workspace_uuid, tag_input, idempotency_key)
 Create tag
 
 Creates a new color-coded tag in the workspace for organizing posts.
@@ -26,6 +26,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **workspace_uuid** | **uuid::Uuid** | UUID of the workspace. | [required] |
 **tag_input** | [**TagInput**](TagInput.md) |  | [required] |
+**idempotency_key** | Option<**String**> | Unique key (for example a UUID) that makes the request safe to retry. A repeat with the same key and body within 24 hours returns the stored response with `Idempotent-Replayed: true` and has no further effect. Keys are scoped to your user, the workspace, the method and the path.  |  |
 
 ### Return type
 

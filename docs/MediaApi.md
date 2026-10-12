@@ -19,6 +19,7 @@ Method | HTTP request | Description
 [**update_media_folder**](MediaApi.md#update_media_folder) | **PUT** /{workspaceUuid}/media/folders/{folderUuid} | Update media folder
 [**upload_chunk**](MediaApi.md#upload_chunk) | **POST** /{workspaceUuid}/media/chunked/{uploadUuid}/upload | Upload a chunk
 [**upload_media**](MediaApi.md#upload_media) | **POST** /{workspaceUuid}/media | Upload media (binary)
+[**upload_media_base64**](MediaApi.md#upload_media_base64) | **POST** /{workspaceUuid}/media/base64 | Upload media (base64 JSON)
 
 
 
@@ -87,7 +88,7 @@ Name | Type | Description  | Required | Notes
 
 ## create_media_folder
 
-> models::MediaFolder create_media_folder(workspace_uuid, create_media_folder_request)
+> models::MediaFolder create_media_folder(workspace_uuid, create_media_folder_request, idempotency_key)
 Create media folder
 
 Creates a folder at the top level or under `parent`. The name must be unique among its siblings.
@@ -99,6 +100,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **workspace_uuid** | **uuid::Uuid** | UUID of the workspace. | [required] |
 **create_media_folder_request** | [**CreateMediaFolderRequest**](CreateMediaFolderRequest.md) |  | [required] |
+**idempotency_key** | Option<**String**> | Unique key (for example a UUID) that makes the request safe to retry. A repeat with the same key and body within 24 hours returns the stored response with `Idempotent-Replayed: true` and has no further effect. Keys are scoped to your user, the workspace, the method and the path.  |  |
 
 ### Return type
 
@@ -243,7 +245,7 @@ Name | Type | Description  | Required | Notes
 
 ## initiate_chunked_upload
 
-> models::InitiateChunkedUpload201Response initiate_chunked_upload(workspace_uuid, initiate_chunked_upload_request)
+> models::InitiateChunkedUpload201Response initiate_chunked_upload(workspace_uuid, initiate_chunked_upload_request, idempotency_key)
 Initiate chunked upload
 
 Start a chunked upload session for large files. Returns an `upload_uuid`, `chunk_size`, and `total_chunks` to use for subsequent chunk requests. 
@@ -255,6 +257,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **workspace_uuid** | **uuid::Uuid** | UUID of the workspace. | [required] |
 **initiate_chunked_upload_request** | [**InitiateChunkedUploadRequest**](InitiateChunkedUploadRequest.md) |  | [required] |
+**idempotency_key** | Option<**String**> | Unique key (for example a UUID) that makes the request safe to retry. A repeat with the same key and body within 24 hours returns the stored response with `Idempotent-Replayed: true` and has no further effect. Keys are scoped to your user, the workspace, the method and the path.  |  |
 
 ### Return type
 
@@ -274,7 +277,7 @@ Name | Type | Description  | Required | Notes
 
 ## initiate_remote_upload
 
-> models::InitiateRemoteUpload201Response initiate_remote_upload(workspace_uuid, initiate_remote_upload_request)
+> models::InitiateRemoteUpload201Response initiate_remote_upload(workspace_uuid, initiate_remote_upload_request, idempotency_key)
 Initiate remote upload
 
 Download a file from a remote URL into the media library. For small files the media object is returned immediately. For large files a `download_id` is returned — poll the status endpoint. 
@@ -286,6 +289,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **workspace_uuid** | **uuid::Uuid** | UUID of the workspace. | [required] |
 **initiate_remote_upload_request** | [**InitiateRemoteUploadRequest**](InitiateRemoteUploadRequest.md) |  | [required] |
+**idempotency_key** | Option<**String**> | Unique key (for example a UUID) that makes the request safe to retry. A repeat with the same key and body within 24 hours returns the stored response with `Idempotent-Replayed: true` and has no further effect. Keys are scoped to your user, the workspace, the method and the path.  |  |
 
 ### Return type
 
@@ -471,10 +475,10 @@ Name | Type | Description  | Required | Notes
 
 ## upload_media
 
-> models::Media upload_media(workspace_uuid, file, alt_text, folder)
+> models::Media upload_media(workspace_uuid, file, idempotency_key, alt_text, folder)
 Upload media (binary)
 
-Upload a file directly as multipart form data.
+Upload a file directly as multipart form data. Images and videos, plus a PDF (up to 100 MB) for LinkedIn document posts: a post that attaches a PDF must have it as the only media item and may only go to LinkedIn profiles and pages. 
 
 ### Parameters
 
@@ -483,6 +487,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **workspace_uuid** | **uuid::Uuid** | UUID of the workspace. | [required] |
 **file** | **std::path::PathBuf** | The file to upload. | [required] |
+**idempotency_key** | Option<**String**> | Unique key (for example a UUID) that makes the request safe to retry. A repeat with the same key and body within 24 hours returns the stored response with `Idempotent-Replayed: true` and has no further effect. Keys are scoped to your user, the workspace, the method and the path.  |  |
 **alt_text** | Option<**String**> | Alternative text for accessibility. |  |
 **folder** | Option<**uuid::Uuid**> | UUID of the media folder to file the upload in. Omit or null for the library root. |  |
 
@@ -497,6 +502,38 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## upload_media_base64
+
+> models::Media upload_media_base64(workspace_uuid, media_base64_input, idempotency_key)
+Upload media (base64 JSON)
+
+Upload a file as base64 inside a JSON body, for agents and tools that cannot send multipart form data. The decoded file is checked exactly like `POST media` (allowed types and size limits; a PDF is accepted for LinkedIn document posts). Decoded size is capped at 20 MB; for larger files use remote upload by URL or chunked upload. 
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**workspace_uuid** | **uuid::Uuid** | UUID of the workspace. | [required] |
+**media_base64_input** | [**MediaBase64Input**](MediaBase64Input.md) |  | [required] |
+**idempotency_key** | Option<**String**> | Unique key (for example a UUID) that makes the request safe to retry. A repeat with the same key and body within 24 hours returns the stored response with `Idempotent-Replayed: true` and has no further effect. Keys are scoped to your user, the workspace, the method and the path.  |  |
+
+### Return type
+
+[**models::Media**](Media.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

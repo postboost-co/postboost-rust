@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**body** | Option<**String**> | Post text/caption. | [optional]
+**body** | Option<**String**> | Post text/caption. For a second item on Facebook Page, Instagram or LinkedIn this is the first comment. | [optional]
 **url** | Option<**String**> |  | [optional]
 **media** | Option<**Vec<i32>**> | Array of media IDs from the media library. | [optional]
 **video_thumbs** | Option<[**Vec<serde_json::Value>**](serde_json::Value.md)> |  | [optional]

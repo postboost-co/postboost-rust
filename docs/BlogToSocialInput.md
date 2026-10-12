@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **language** | Option<**String**> | Output language as an ISO 639-1 code (e.g. `en`, `de`, `fr`). Use `auto` to match the blog post's language automatically.  | [optional][default to auto]
 **custom_instructions** | Option<**String**> | Additional instructions appended to the AI prompt (e.g. \"always mention our free tier\"). | [optional]
 **create_post** | Option<**bool**> | When `true`, creates a draft post in the workspace with per-account caption versions. If an image is available, it is imported and attached to the post.  | [optional][default to false]
+**use_brand_voice** | Option<**bool**> | Apply the workspace brand voice (see `GET brand-voice`) to the captions. An explicit `tone` is kept, but the brand voice wins on vocabulary, words to avoid and calls to action.  | [optional][default to true]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

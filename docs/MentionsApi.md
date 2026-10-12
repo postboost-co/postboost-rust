@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## create_mention
 
-> models::CreateMention201Response create_mention(workspace_uuid, mention_input)
+> models::CreateMention201Response create_mention(workspace_uuid, mention_input, idempotency_key)
 Create mention
 
 Adds a person or page to the mention book. When one of the submitted identities already belongs to a stored mention, that mention is reused and the identities are added to it (status `200` instead of `201`). 
@@ -26,6 +26,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **workspace_uuid** | **uuid::Uuid** | UUID of the workspace. | [required] |
 **mention_input** | [**MentionInput**](MentionInput.md) |  | [required] |
+**idempotency_key** | Option<**String**> | Unique key (for example a UUID) that makes the request safe to retry. A repeat with the same key and body within 24 hours returns the stored response with `Idempotent-Replayed: true` and has no further effect. Keys are scoped to your user, the workspace, the method and the path.  |  |
 
 ### Return type
 
