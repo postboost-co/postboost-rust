@@ -22,7 +22,9 @@ pub enum AddPostToQueueError {
     Status401(serde_json::Value),
     Status403(serde_json::Value),
     Status404(serde_json::Value),
+    Status409(models::GuardrailError),
     Status422(serde_json::Value),
+    Status429(models::GuardrailError),
     UnknownValue(serde_json::Value),
 }
 
@@ -225,7 +227,9 @@ pub enum SchedulePostError {
     Status401(serde_json::Value),
     Status403(serde_json::Value),
     Status404(serde_json::Value),
+    Status409(models::GuardrailError),
     Status422(serde_json::Value),
+    Status429(models::GuardrailError),
     UnknownValue(serde_json::Value),
 }
 
@@ -274,7 +278,7 @@ pub enum ValidatePostError {
 }
 
 
-/// Add an existing post to the smart publishing queue. Each account of the post gets its own next free queue slot. Returns `422` when the post has no accounts, the posting schedule has no available times, or provider requirements are not met. 
+/// Add an existing post to the smart publishing queue. Each account of the post gets its own next free queue slot. Returns `422` when the post has no accounts, the posting schedule has no available times, or provider requirements are not met. The guardrails check the saved post as publishing today (UTC), as on create: `409` duplicate (override with `X-Allow-Duplicate: true`), `422` account cannot publish, `429` daily or X cap. 
 pub async fn add_post_to_queue(configuration: &configuration::Configuration, workspace_uuid: &str, post_uuid: &str, idempotency_key: Option<&str>, add_post_to_queue_request: Option<models::AddPostToQueueRequest>) -> Result<models::ScheduleResult, Error<AddPostToQueueError>> {
     let local_var_configuration = configuration;
 
@@ -915,7 +919,7 @@ pub async fn retry_post_account(configuration: &configuration::Configuration, wo
     }
 }
 
-/// Schedule an existing post. Optionally move it with `date`/`time` (read in `timezone`) and give accounts their own times with `accounts_schedule`. Set `postNow: true` to publish immediately; publishing starts within the request and any per-account times are dropped. Provider requirements are validated and reported as `422`. 
+/// Schedule an existing post. Optionally move it with `date`/`time` (read in `timezone`) and give accounts their own times with `accounts_schedule`. Set `postNow: true` to publish immediately; publishing starts within the request and any per-account times are dropped. Provider requirements are validated and reported as `422`. The guardrails check the saved post at the time it would publish, as on create: `409` duplicate (override with `X-Allow-Duplicate: true`), `422` account cannot publish, `429` daily or X cap. 
 pub async fn schedule_post(configuration: &configuration::Configuration, workspace_uuid: &str, post_uuid: &str, schedule_post_request: models::SchedulePostRequest, idempotency_key: Option<&str>) -> Result<models::ScheduleResult, Error<SchedulePostError>> {
     let local_var_configuration = configuration;
 
