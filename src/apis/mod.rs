@@ -97,6 +97,7 @@ pub mod activity_api;
 pub mod agents_api;
 pub mod analytics_api;
 pub mod competitors_api;
+pub mod free_tools_api;
 pub mod hashtag_groups_api;
 pub mod inbox_api;
 pub mod media_api;
