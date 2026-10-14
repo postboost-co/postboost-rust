@@ -100,7 +100,7 @@ Name | Type | Description  | Required | Notes
 
 ## create_post
 
-> models::Post create_post(workspace_uuid, post_input, idempotency_key)
+> models::CreatePost201Response create_post(workspace_uuid, post_input, idempotency_key)
 Create post
 
 Create a new post. Use `schedule: true` with `date` and `time` to schedule, `schedule_now: true` to publish immediately, or `queue: true` to add to the smart publishing queue (each account gets its own queue slot).  `date`, `time` and `accounts_schedule` are read in `timezone` when given, otherwise in the workspace timezone. Use `accounts_schedule` to give individual accounts their own departure time.  Post bodies may reference mentions with `{{mention:<reference>}}` (see the Mentions endpoints). When the post is scheduled, provider requirements (for example a network that requires media) are validated up front and reported as `422`.  **First comment and threads.** A version's `content` is an ordered array. Item 0 is the post. Add a second item to publish a first comment on Facebook Page, Instagram and LinkedIn, or to continue a thread on X, Threads, Bluesky, Mastodon and Pixelfed:  ```json {   \"accounts\": [12],   \"schedule_now\": true,   \"versions\": [{     \"account_id\": 0,     \"is_original\": true,     \"content\": [       { \"body\": \"Our API 1.8 is live.\", \"media\": [345] },       { \"body\": \"Full changelog: https://postboost.co/docs/changelog/\" }     ]   }] } ```  The comment is posted right after the post goes live. If the comment fails, the post stays published and the account's entry on the post reports the error. 
@@ -116,7 +116,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::Post**](Post.md)
+[**models::CreatePost201Response**](createPost_201_response.md)
 
 ### Authorization
 
@@ -690,7 +690,7 @@ Name | Type | Description  | Required | Notes
 
 ## update_post
 
-> serde_json::Value update_post(workspace_uuid, post_uuid, post_input)
+> models::UpdatePost200Response update_post(workspace_uuid, post_uuid, post_input)
 Update post
 
 Replaces a post's versions, accounts, tags, and scheduling options. The post must not be in a published state. `timezone` is honoured: `date`, `time` and `accounts_schedule` are read in it. When the post stays scheduled, provider requirements are validated and reported as `422`. 
@@ -706,7 +706,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**serde_json::Value**](serde_json::Value.md)
+[**models::UpdatePost200Response**](updatePost_200_response.md)
 
 ### Authorization
 
