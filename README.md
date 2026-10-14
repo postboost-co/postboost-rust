@@ -6,7 +6,7 @@ Official Rust client for the [PostBoost API](https://postboost.co/docs/api).
 
 ```toml
 [dependencies]
-postboost = "1.18.0"
+postboost = "1.19.0"
 ```
 
 Or with cargo:
@@ -20,7 +20,7 @@ cargo add postboost
 | **crates.io** | [crates.io/crates/postboost](https://crates.io/crates/postboost) |
 | **GitHub** | [postboost-co/postboost-rust](https://github.com/postboost-co/postboost-rust) |
 | **Docs** | [postboost.co/docs/api](https://postboost.co/docs/api) |
-| **Version** | v1.18.0 |
+| **Version** | v1.19.0 |
 
 ## Quick start
 
@@ -51,6 +51,7 @@ Class | Method | HTTP request | Description
 *AiApi* | [**delete_brand_voice**](docs/AiApi.md#delete_brand_voice) | **DELETE** /{workspaceUuid}/brand-voice | Delete the brand voice
 *AiApi* | [**get_ai_usage**](docs/AiApi.md#get_ai_usage) | **GET** /{workspaceUuid}/usage/ai | AI credit usage
 *AiApi* | [**get_brand_voice**](docs/AiApi.md#get_brand_voice) | **GET** /{workspaceUuid}/brand-voice | Get the brand voice
+*AiApi* | [**get_repurpose_run**](docs/AiApi.md#get_repurpose_run) | **GET** /{workspaceUuid}/ai/repurpose/runs/{runId} | Get a repurpose run
 *AiApi* | [**image_alt_text**](docs/AiApi.md#image_alt_text) | **POST** /{workspaceUuid}/ai/image-alt-text | Generate alt text for a media image using AI
 *AiApi* | [**image_edit**](docs/AiApi.md#image_edit) | **POST** /{workspaceUuid}/ai/image-edit | Edit an existing media image using AI
 *AiApi* | [**image_generate**](docs/AiApi.md#image_generate) | **POST** /{workspaceUuid}/ai/image-generate | Generate social media images from a caption

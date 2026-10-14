@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **theme** | Option<[**models::RepurposeInputTheme**](RepurposeInput_theme.md)> |  | [optional]
 **create_post** | Option<**bool**> | Create the draft post. `false` returns captions and slides only. | [optional][default to true]
 **use_brand_voice** | Option<**bool**> |  | [optional][default to true]
+**r#async** | Option<**bool**> | Answer `202` with a run id right away instead of waiting up to 20 seconds for the result. | [optional][default to false]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
