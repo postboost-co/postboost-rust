@@ -5,6 +5,7 @@ All URIs are relative to *https://postboost.co/app/api*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**connect_channel**](AccountsApi.md#connect_channel) | **POST** /{workspaceUuid}/accounts/connect/{provider} | Connect a Telegram, Discord or Slack channel
+[**create_connect_link**](AccountsApi.md#create_connect_link) | **POST** /{workspaceUuid}/accounts/connect-links | Create a connect link
 [**create_reconnect_link**](AccountsApi.md#create_reconnect_link) | **POST** /{workspaceUuid}/accounts/{accountUuid}/reconnect-links | Create a reconnect link
 [**get_account**](AccountsApi.md#get_account) | **GET** /{workspaceUuid}/accounts/{accountUuid} | Get account
 [**get_account_health**](AccountsApi.md#get_account_health) | **GET** /{workspaceUuid}/account-health | Account health
@@ -31,6 +32,37 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**models::ChannelAccount**](ChannelAccount.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## create_connect_link
+
+> models::ConnectLink create_connect_link(workspace_uuid, create_connect_link_request)
+Create a connect link
+
+Creates a single-use link (valid 15 minutes) that lets the user connect a new account on an OAuth network to this workspace. Ask the user to open this link in their browser while logged in to PostBoost, wait until they confirm, then call `list-accounts` to get the new account id. The link signs no one in: only the user who created it, while a workspace admin, can use it. Telegram, Discord and Slack need no browser: connect them with `connectChannel`. Mastodon, Pixelfed and Bluesky ask for a server or handle first, so the user connects them in the app. Workspace admins only; at most 10 links per minute. 
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**workspace_uuid** | **uuid::Uuid** | UUID of the workspace. | [required] |
+**create_connect_link_request** | [**CreateConnectLinkRequest**](CreateConnectLinkRequest.md) |  | [required] |
+
+### Return type
+
+[**models::ConnectLink**](ConnectLink.md)
 
 ### Authorization
 
