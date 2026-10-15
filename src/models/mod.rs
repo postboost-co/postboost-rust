@@ -6,6 +6,8 @@ pub mod account_analytics_initial_sync;
 pub use self::account_analytics_initial_sync::AccountAnalyticsInitialSync;
 pub mod account_connection_health;
 pub use self::account_connection_health::AccountConnectionHealth;
+pub mod account_connection_health_reconnect_reason;
+pub use self::account_connection_health_reconnect_reason::AccountConnectionHealthReconnectReason;
 pub mod account_errors_inner;
 pub use self::account_errors_inner::AccountErrorsInner;
 pub mod account_errors_inner_one_of;
