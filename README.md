@@ -6,7 +6,7 @@ Official Rust client for the [PostBoost API](https://postboost.co/docs/api).
 
 ```toml
 [dependencies]
-postboost = "1.28.0"
+postboost = "1.29.0"
 ```
 
 Or with cargo:
@@ -20,7 +20,7 @@ cargo add postboost
 | **crates.io** | [crates.io/crates/postboost](https://crates.io/crates/postboost) |
 | **GitHub** | [postboost-co/postboost-rust](https://github.com/postboost-co/postboost-rust) |
 | **Docs** | [postboost.co/docs/api](https://postboost.co/docs/api) |
-| **Version** | v1.28.0 |
+| **Version** | v1.29.0 |
 
 ## Quick start
 
@@ -104,7 +104,9 @@ Class | Method | HTTP request | Description
 *FreeToolsApi* | [**clean_text**](docs/FreeToolsApi.md#clean_text) | **POST** /tools/ai-text-cleaner | Clean AI-written text: dashes, quotes, invisible characters, markdown
 *FreeToolsApi* | [**count_characters**](docs/FreeToolsApi.md#count_characters) | **POST** /tools/social-media-character-counter | Count characters as each network counts them
 *FreeToolsApi* | [**format_linked_in_post**](docs/FreeToolsApi.md#format_linked_in_post) | **POST** /tools/linkedin-post-formatter | Format a LinkedIn post with bold, italic and lists
+*FreeToolsApi* | [**generate_caption**](docs/FreeToolsApi.md#generate_caption) | **POST** /tools/instagram-caption-generator | Write three post captions for a topic with AI (needs a token, spends AI credits)
 *FreeToolsApi* | [**generate_fancy_text**](docs/FreeToolsApi.md#generate_fancy_text) | **POST** /tools/fancy-text-generator | Convert text to fancy Unicode styles
+*FreeToolsApi* | [**generate_hashtags**](docs/FreeToolsApi.md#generate_hashtags) | **POST** /tools/instagram-hashtag-generator | Generate hashtags for a post topic with AI (needs a token, spends AI credits)
 *FreeToolsApi* | [**list_free_tools**](docs/FreeToolsApi.md#list_free_tools) | **GET** /tools | List the free tools
 *FreeToolsApi* | [**split_thread**](docs/FreeToolsApi.md#split_thread) | **POST** /tools/x-thread-maker | Split long text into a thread
 *HashtagGroupsApi* | [**create_hashtag_group**](docs/HashtagGroupsApi.md#create_hashtag_group) | **POST** /{workspaceUuid}/hashtag-groups | Create a hashtag group
