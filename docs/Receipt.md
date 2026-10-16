@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 **currency** | **String** |  | 
 **receipt_url** | Option<**String**> |  | [optional]
 **description** | Option<**String**> |  | [optional]
-**paid_at** | **String** |  | 
-**created_at** | **String** |  | 
+**paid_at** | **String** | Display date in the configured timezone, `M j, Y` (not RFC 3339). | 
+**created_at** | **String** | Display date in the configured timezone, `M j, Y` (not RFC 3339). | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

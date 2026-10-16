@@ -9,9 +9,9 @@ Name | Type | Description | Notes
 **platform_plan_id** | **String** |  | 
 **status** | [**models::SubscriptionStatus**](SubscriptionStatus.md) |  | 
 **recurring** | **bool** |  | 
-**trial_ends_at** | Option<**String**> |  | [optional]
-**paused_from** | Option<**String**> |  | [optional]
-**ends_at** | Option<**String**> |  | [optional]
+**trial_ends_at** | Option<**String**> | Display date in the configured timezone, `M j, Y` (not RFC 3339). | [optional]
+**paused_from** | Option<**String**> | Display date in the configured timezone, `M j, Y` (not RFC 3339). | [optional]
+**ends_at** | Option<**String**> | Display date in the configured timezone, `M j, Y` (not RFC 3339). | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

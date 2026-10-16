@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **avatar** | Option<**String**> | URL of the workspace avatar, or null when none is set. Supersedes `hex_color`. | [optional]
 **owner** | Option<[**models::User**](User.md)> |  | [optional]
 **access_status** | **String** |  | 
-**created_at** | **String** |  | 
+**created_at** | **String** | Display string in the configured timezone and clock: `M j, H:i` this year, `M j, Y, H:i` otherwise (12-hour setting: `h:ia`), not RFC 3339. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
