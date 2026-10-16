@@ -11,9 +11,9 @@ Name | Type | Description | Notes
 **accounts** | [**Vec<models::Account>**](Account.md) |  | 
 **versions** | [**Vec<models::PostVersion>**](PostVersion.md) |  | 
 **tags** | [**Vec<models::Tag>**](Tag.md) |  | 
-**scheduled_at** | Option<**String**> |  | [optional]
-**published_at** | Option<**String**> |  | [optional]
-**created_at** | **String** |  | 
+**scheduled_at** | Option<**String**> | `Y-m-d H:i:s` in UTC (not RFC 3339). | [optional]
+**published_at** | Option<**String**> | `Y-m-d H:i:s` in UTC (not RFC 3339). | [optional]
+**created_at** | **String** | `Y-m-d H:i:s` in UTC (not RFC 3339). | 
 **trashed** | **bool** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

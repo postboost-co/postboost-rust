@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **name** | **String** |  | 
 **username** | **String** |  | 
 **image** | Option<**String**> |  | [optional]
-**provider** | **String** |  | 
+**provider** | **String** | Network key. Known values: `twitter`, `facebook_page`, `instagram`, `instagram_standalone`, `threads`, `linkedin`, `linkedin_page`, `tiktok`, `youtube`, `pinterest`, `gbp`, `bluesky`, `mastodon`, `pixelfed`, `telegram`, `discord`, `slack`. New networks add new keys, so treat unknown values as valid.  | 
 **data** | [**serde_json::Value**](.md) | Provider-specific metadata. | 
 **authorized** | **bool** |  | 
 **profile_url** | Option<**String**> | Public URL of the account's profile on the network, when known. | [optional]

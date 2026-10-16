@@ -624,6 +624,8 @@ pub mod user_input;
 pub use self::user_input::UserInput;
 pub mod user_update_input;
 pub use self::user_update_input::UserUpdateInput;
+pub mod webhook_envelope;
+pub use self::webhook_envelope::WebhookEnvelope;
 pub mod webhook_event_name;
 pub use self::webhook_event_name::WebhookEventName;
 pub mod webhook_event_payload;
