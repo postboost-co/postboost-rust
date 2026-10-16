@@ -6,7 +6,7 @@ Official Rust client for the [PostBoost API](https://postboost.co/docs/api).
 
 ```toml
 [dependencies]
-postboost = "1.45.0"
+postboost = "1.46.0"
 ```
 
 Or with cargo:
@@ -20,7 +20,7 @@ cargo add postboost
 | **crates.io** | [crates.io/crates/postboost](https://crates.io/crates/postboost) |
 | **GitHub** | [postboost-co/postboost-rust](https://github.com/postboost-co/postboost-rust) |
 | **Docs** | [postboost.co/docs/api](https://postboost.co/docs/api) |
-| **Version** | v1.45.0 |
+| **Version** | v1.46.0 |
 
 ## Quick start
 
@@ -102,6 +102,7 @@ Class | Method | HTTP request | Description
 *FreeToolsApi* | [**calculate_aspect_ratio**](docs/FreeToolsApi.md#calculate_aspect_ratio) | **POST** /tools/aspect-ratio-calculator | Calculate an aspect ratio, or the missing side of an image at a given ratio
 *FreeToolsApi* | [**calculate_crop**](docs/FreeToolsApi.md#calculate_crop) | **POST** /tools/social-media-image-sizes/crop | Calculate the crop box that fits an image to a social media size
 *FreeToolsApi* | [**calculate_engagement_rate**](docs/FreeToolsApi.md#calculate_engagement_rate) | **POST** /tools/engagement-rate-calculator | Calculate an engagement rate
+*FreeToolsApi* | [**calculate_social_roi**](docs/FreeToolsApi.md#calculate_social_roi) | **POST** /tools/social-media-roi-calculator | Calculate social media ROI
 *FreeToolsApi* | [**check_link_preview**](docs/FreeToolsApi.md#check_link_preview) | **POST** /tools/link-preview-checker | Check how a link previews on X, LinkedIn, Facebook and chat apps (Open Graph and Twitter card tags)
 *FreeToolsApi* | [**check_post**](docs/FreeToolsApi.md#check_post) | **POST** /tools/social-media-post-checker | Check a post against each network's publishing rules
 *FreeToolsApi* | [**check_youtube_thumbnail**](docs/FreeToolsApi.md#check_youtube_thumbnail) | **POST** /tools/youtube-thumbnail-size-checker | Check a YouTube thumbnail's ratio, width, file size and format against YouTube's requirements

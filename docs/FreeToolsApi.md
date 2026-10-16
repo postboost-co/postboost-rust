@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**calculate_aspect_ratio**](FreeToolsApi.md#calculate_aspect_ratio) | **POST** /tools/aspect-ratio-calculator | Calculate an aspect ratio, or the missing side of an image at a given ratio
 [**calculate_crop**](FreeToolsApi.md#calculate_crop) | **POST** /tools/social-media-image-sizes/crop | Calculate the crop box that fits an image to a social media size
 [**calculate_engagement_rate**](FreeToolsApi.md#calculate_engagement_rate) | **POST** /tools/engagement-rate-calculator | Calculate an engagement rate
+[**calculate_social_roi**](FreeToolsApi.md#calculate_social_roi) | **POST** /tools/social-media-roi-calculator | Calculate social media ROI
 [**check_link_preview**](FreeToolsApi.md#check_link_preview) | **POST** /tools/link-preview-checker | Check how a link previews on X, LinkedIn, Facebook and chat apps (Open Graph and Twitter card tags)
 [**check_post**](FreeToolsApi.md#check_post) | **POST** /tools/social-media-post-checker | Check a post against each network's publishing rules
 [**check_youtube_thumbnail**](FreeToolsApi.md#check_youtube_thumbnail) | **POST** /tools/youtube-thumbnail-size-checker | Check a YouTube thumbnail's ratio, width, file size and format against YouTube's requirements
@@ -139,6 +140,36 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**models::FreeToolCalculateEngagementRateResponse**](FreeToolCalculateEngagementRateResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## calculate_social_roi
+
+> models::FreeToolCalculateSocialRoiResponse calculate_social_roi(free_tool_calculate_social_roi_request)
+Calculate social media ROI
+
+Calculate social media ROI. The same logic as the free web tool at https://postboost.co/tools/social-media-roi-calculator. No account needed: call it without a token, or with any API token.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**free_tool_calculate_social_roi_request** | [**FreeToolCalculateSocialRoiRequest**](FreeToolCalculateSocialRoiRequest.md) |  | [required] |
+
+### Return type
+
+[**models::FreeToolCalculateSocialRoiResponse**](FreeToolCalculateSocialRoiResponse.md)
 
 ### Authorization
 
