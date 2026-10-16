@@ -6,7 +6,7 @@ Official Rust client for the [PostBoost API](https://postboost.co/docs/api).
 
 ```toml
 [dependencies]
-postboost = "1.39.0"
+postboost = "1.40.0"
 ```
 
 Or with cargo:
@@ -20,7 +20,7 @@ cargo add postboost
 | **crates.io** | [crates.io/crates/postboost](https://crates.io/crates/postboost) |
 | **GitHub** | [postboost-co/postboost-rust](https://github.com/postboost-co/postboost-rust) |
 | **Docs** | [postboost.co/docs/api](https://postboost.co/docs/api) |
-| **Version** | v1.39.0 |
+| **Version** | v1.40.0 |
 
 ## Quick start
 
@@ -104,6 +104,7 @@ Class | Method | HTTP request | Description
 *FreeToolsApi* | [**calculate_engagement_rate**](docs/FreeToolsApi.md#calculate_engagement_rate) | **POST** /tools/engagement-rate-calculator | Calculate an engagement rate
 *FreeToolsApi* | [**check_link_preview**](docs/FreeToolsApi.md#check_link_preview) | **POST** /tools/link-preview-checker | Check how a link previews on X, LinkedIn, Facebook and chat apps (Open Graph and Twitter card tags)
 *FreeToolsApi* | [**check_post**](docs/FreeToolsApi.md#check_post) | **POST** /tools/social-media-post-checker | Check a post against each network's publishing rules
+*FreeToolsApi* | [**check_youtube_thumbnail**](docs/FreeToolsApi.md#check_youtube_thumbnail) | **POST** /tools/youtube-thumbnail-size-checker | Check a YouTube thumbnail's ratio, width, file size and format against YouTube's requirements
 *FreeToolsApi* | [**clean_text**](docs/FreeToolsApi.md#clean_text) | **POST** /tools/ai-text-cleaner | Clean AI-written text: dashes, quotes, invisible characters, markdown
 *FreeToolsApi* | [**count_characters**](docs/FreeToolsApi.md#count_characters) | **POST** /tools/social-media-character-counter | Count characters as each network counts them
 *FreeToolsApi* | [**format_linked_in_post**](docs/FreeToolsApi.md#format_linked_in_post) | **POST** /tools/linkedin-post-formatter | Format a LinkedIn post with bold, italic and lists
@@ -115,6 +116,7 @@ Class | Method | HTTP request | Description
 *FreeToolsApi* | [**get_best_times_to_post**](docs/FreeToolsApi.md#get_best_times_to_post) | **GET** /tools/best-time-to-post | Get the best times to post per network from published studies, with sources
 *FreeToolsApi* | [**get_hook_templates**](docs/FreeToolsApi.md#get_hook_templates) | **GET** /tools/hook-generator/library | Get free hook templates for social media posts, filtered by style and network
 *FreeToolsApi* | [**get_image_sizes**](docs/FreeToolsApi.md#get_image_sizes) | **GET** /tools/social-media-image-sizes | Get social media image sizes per network, each with its source
+*FreeToolsApi* | [**get_video_specs**](docs/FreeToolsApi.md#get_video_specs) | **GET** /tools/social-media-video-specs | Get social media video ratios, resolutions, lengths and file size limits per network, with sources
 *FreeToolsApi* | [**list_free_tools**](docs/FreeToolsApi.md#list_free_tools) | **GET** /tools | List the free tools
 *FreeToolsApi* | [**preview_post**](docs/FreeToolsApi.md#preview_post) | **POST** /tools/social-media-post-preview | Preview where a post folds and when its image is cropped on Instagram, X, LinkedIn and Facebook
 *FreeToolsApi* | [**split_thread**](docs/FreeToolsApi.md#split_thread) | **POST** /tools/x-thread-maker | Split long text into a thread
