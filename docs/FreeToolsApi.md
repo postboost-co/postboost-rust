@@ -5,6 +5,7 @@ All URIs are relative to *https://postboost.co/app/api*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**build_utm_url**](FreeToolsApi.md#build_utm_url) | **POST** /tools/utm-builder | Build a UTM-tagged campaign URL
+[**calculate_aspect_ratio**](FreeToolsApi.md#calculate_aspect_ratio) | **POST** /tools/aspect-ratio-calculator | Calculate an aspect ratio, or the missing side of an image at a given ratio
 [**calculate_crop**](FreeToolsApi.md#calculate_crop) | **POST** /tools/social-media-image-sizes/crop | Calculate the crop box that fits an image to a social media size
 [**calculate_engagement_rate**](FreeToolsApi.md#calculate_engagement_rate) | **POST** /tools/engagement-rate-calculator | Calculate an engagement rate
 [**check_post**](FreeToolsApi.md#check_post) | **POST** /tools/social-media-post-checker | Check a post against each network's publishing rules
@@ -39,6 +40,36 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**models::FreeToolBuildUtmUrlResponse**](FreeToolBuildUtmUrlResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## calculate_aspect_ratio
+
+> models::FreeToolCalculateAspectRatioResponse calculate_aspect_ratio(free_tool_calculate_aspect_ratio_request)
+Calculate an aspect ratio, or the missing side of an image at a given ratio
+
+Calculate an aspect ratio, or the missing side of an image at a given ratio. The same logic as the free web tool at https://postboost.co/tools/aspect-ratio-calculator. No account needed: call it without a token, or with any API token.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**free_tool_calculate_aspect_ratio_request** | [**FreeToolCalculateAspectRatioRequest**](FreeToolCalculateAspectRatioRequest.md) |  | [required] |
+
+### Return type
+
+[**models::FreeToolCalculateAspectRatioResponse**](FreeToolCalculateAspectRatioResponse.md)
 
 ### Authorization
 

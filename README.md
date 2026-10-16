@@ -6,7 +6,7 @@ Official Rust client for the [PostBoost API](https://postboost.co/docs/api).
 
 ```toml
 [dependencies]
-postboost = "1.32.0"
+postboost = "1.33.0"
 ```
 
 Or with cargo:
@@ -20,7 +20,7 @@ cargo add postboost
 | **crates.io** | [crates.io/crates/postboost](https://crates.io/crates/postboost) |
 | **GitHub** | [postboost-co/postboost-rust](https://github.com/postboost-co/postboost-rust) |
 | **Docs** | [postboost.co/docs/api](https://postboost.co/docs/api) |
-| **Version** | v1.32.0 |
+| **Version** | v1.33.0 |
 
 ## Quick start
 
@@ -99,6 +99,7 @@ Class | Method | HTTP request | Description
 *CompetitorsApi* | [**get_competitor**](docs/CompetitorsApi.md#get_competitor) | **GET** /{workspaceUuid}/competitors/{competitorId} | Get a competitor
 *CompetitorsApi* | [**list_competitors**](docs/CompetitorsApi.md#list_competitors) | **GET** /{workspaceUuid}/competitors | List competitors
 *FreeToolsApi* | [**build_utm_url**](docs/FreeToolsApi.md#build_utm_url) | **POST** /tools/utm-builder | Build a UTM-tagged campaign URL
+*FreeToolsApi* | [**calculate_aspect_ratio**](docs/FreeToolsApi.md#calculate_aspect_ratio) | **POST** /tools/aspect-ratio-calculator | Calculate an aspect ratio, or the missing side of an image at a given ratio
 *FreeToolsApi* | [**calculate_crop**](docs/FreeToolsApi.md#calculate_crop) | **POST** /tools/social-media-image-sizes/crop | Calculate the crop box that fits an image to a social media size
 *FreeToolsApi* | [**calculate_engagement_rate**](docs/FreeToolsApi.md#calculate_engagement_rate) | **POST** /tools/engagement-rate-calculator | Calculate an engagement rate
 *FreeToolsApi* | [**check_post**](docs/FreeToolsApi.md#check_post) | **POST** /tools/social-media-post-checker | Check a post against each network's publishing rules
