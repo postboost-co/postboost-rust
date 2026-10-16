@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**check_youtube_thumbnail**](FreeToolsApi.md#check_youtube_thumbnail) | **POST** /tools/youtube-thumbnail-size-checker | Check a YouTube thumbnail's ratio, width, file size and format against YouTube's requirements
 [**clean_text**](FreeToolsApi.md#clean_text) | **POST** /tools/ai-text-cleaner | Clean AI-written text: dashes, quotes, invisible characters, markdown
 [**count_characters**](FreeToolsApi.md#count_characters) | **POST** /tools/social-media-character-counter | Count characters as each network counts them
+[**format_instagram_caption**](FreeToolsApi.md#format_instagram_caption) | **POST** /tools/instagram-line-break-generator | Keep blank lines in an Instagram caption with spacer lines, and count it
 [**format_linked_in_post**](FreeToolsApi.md#format_linked_in_post) | **POST** /tools/linkedin-post-formatter | Format a LinkedIn post with bold, italic and lists
 [**generate_caption**](FreeToolsApi.md#generate_caption) | **POST** /tools/instagram-caption-generator | Write three post captions for a topic with AI (needs a token, spends AI credits)
 [**generate_fancy_text**](FreeToolsApi.md#generate_fancy_text) | **POST** /tools/fancy-text-generator | Convert text to fancy Unicode styles
@@ -287,6 +288,36 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**models::FreeToolCountCharactersResponse**](FreeToolCountCharactersResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## format_instagram_caption
+
+> models::FreeToolFormatInstagramCaptionResponse format_instagram_caption(free_tool_format_instagram_caption_request)
+Keep blank lines in an Instagram caption with spacer lines, and count it
+
+Keep blank lines in an Instagram caption with spacer lines, and count it. The same logic as the free web tool at https://postboost.co/tools/instagram-line-break-generator. No account needed: call it without a token, or with any API token.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**free_tool_format_instagram_caption_request** | [**FreeToolFormatInstagramCaptionRequest**](FreeToolFormatInstagramCaptionRequest.md) |  | [required] |
+
+### Return type
+
+[**models::FreeToolFormatInstagramCaptionResponse**](FreeToolFormatInstagramCaptionResponse.md)
 
 ### Authorization
 

@@ -6,7 +6,7 @@ Official Rust client for the [PostBoost API](https://postboost.co/docs/api).
 
 ```toml
 [dependencies]
-postboost = "1.41.0"
+postboost = "1.42.0"
 ```
 
 Or with cargo:
@@ -20,7 +20,7 @@ cargo add postboost
 | **crates.io** | [crates.io/crates/postboost](https://crates.io/crates/postboost) |
 | **GitHub** | [postboost-co/postboost-rust](https://github.com/postboost-co/postboost-rust) |
 | **Docs** | [postboost.co/docs/api](https://postboost.co/docs/api) |
-| **Version** | v1.41.0 |
+| **Version** | v1.42.0 |
 
 ## Quick start
 
@@ -107,6 +107,7 @@ Class | Method | HTTP request | Description
 *FreeToolsApi* | [**check_youtube_thumbnail**](docs/FreeToolsApi.md#check_youtube_thumbnail) | **POST** /tools/youtube-thumbnail-size-checker | Check a YouTube thumbnail's ratio, width, file size and format against YouTube's requirements
 *FreeToolsApi* | [**clean_text**](docs/FreeToolsApi.md#clean_text) | **POST** /tools/ai-text-cleaner | Clean AI-written text: dashes, quotes, invisible characters, markdown
 *FreeToolsApi* | [**count_characters**](docs/FreeToolsApi.md#count_characters) | **POST** /tools/social-media-character-counter | Count characters as each network counts them
+*FreeToolsApi* | [**format_instagram_caption**](docs/FreeToolsApi.md#format_instagram_caption) | **POST** /tools/instagram-line-break-generator | Keep blank lines in an Instagram caption with spacer lines, and count it
 *FreeToolsApi* | [**format_linked_in_post**](docs/FreeToolsApi.md#format_linked_in_post) | **POST** /tools/linkedin-post-formatter | Format a LinkedIn post with bold, italic and lists
 *FreeToolsApi* | [**generate_caption**](docs/FreeToolsApi.md#generate_caption) | **POST** /tools/instagram-caption-generator | Write three post captions for a topic with AI (needs a token, spends AI credits)
 *FreeToolsApi* | [**generate_fancy_text**](docs/FreeToolsApi.md#generate_fancy_text) | **POST** /tools/fancy-text-generator | Convert text to fancy Unicode styles
