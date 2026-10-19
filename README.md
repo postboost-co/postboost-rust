@@ -6,7 +6,7 @@ Official Rust client for the [PostBoost API](https://postboost.co/docs/api).
 
 ```toml
 [dependencies]
-postboost = "1.56.0"
+postboost = "1.57.1"
 ```
 
 Or with cargo:
@@ -20,7 +20,7 @@ cargo add postboost
 | **crates.io** | [crates.io/crates/postboost](https://crates.io/crates/postboost) |
 | **GitHub** | [postboost-co/postboost-rust](https://github.com/postboost-co/postboost-rust) |
 | **Docs** | [postboost.co/docs/api](https://postboost.co/docs/api) |
-| **Version** | v1.56.0 |
+| **Version** | v1.57.1 |
 
 ## Quick start
 
@@ -98,12 +98,14 @@ Class | Method | HTTP request | Description
 *CompetitorsApi* | [**delete_competitor**](docs/CompetitorsApi.md#delete_competitor) | **DELETE** /{workspaceUuid}/competitors/{competitorId} | Stop tracking a competitor
 *CompetitorsApi* | [**get_competitor**](docs/CompetitorsApi.md#get_competitor) | **GET** /{workspaceUuid}/competitors/{competitorId} | Get a competitor
 *CompetitorsApi* | [**list_competitors**](docs/CompetitorsApi.md#list_competitors) | **GET** /{workspaceUuid}/competitors | List competitors
+*FreeToolsApi* | [**build_hashtag_groups**](docs/FreeToolsApi.md#build_hashtag_groups) | **POST** /tools/hashtag-group-builder | Clean, dedupe and split hashtags into groups that fit a network's hashtag cap
 *FreeToolsApi* | [**build_utm_url**](docs/FreeToolsApi.md#build_utm_url) | **POST** /tools/utm-builder | Build a UTM-tagged campaign URL
 *FreeToolsApi* | [**calculate_aspect_ratio**](docs/FreeToolsApi.md#calculate_aspect_ratio) | **POST** /tools/aspect-ratio-calculator | Calculate an aspect ratio, or the missing side of an image at a given ratio
 *FreeToolsApi* | [**calculate_carousel_slices**](docs/FreeToolsApi.md#calculate_carousel_slices) | **POST** /tools/instagram-carousel-splitter | Split a wide image into seamless Instagram carousel slides
 *FreeToolsApi* | [**calculate_crop**](docs/FreeToolsApi.md#calculate_crop) | **POST** /tools/social-media-image-sizes/crop | Calculate the crop box that fits an image to a social media size
 *FreeToolsApi* | [**calculate_engagement_rate**](docs/FreeToolsApi.md#calculate_engagement_rate) | **POST** /tools/engagement-rate-calculator | Calculate an engagement rate
 *FreeToolsApi* | [**calculate_influencer_rate**](docs/FreeToolsApi.md#calculate_influencer_rate) | **POST** /tools/influencer-rate-calculator | Estimate an influencer's rate for one sponsored deliverable
+*FreeToolsApi* | [**calculate_smm_pricing**](docs/FreeToolsApi.md#calculate_smm_pricing) | **POST** /tools/social-media-manager-pricing-calculator | Estimate social media manager pricing
 *FreeToolsApi* | [**calculate_social_roi**](docs/FreeToolsApi.md#calculate_social_roi) | **POST** /tools/social-media-roi-calculator | Calculate social media ROI
 *FreeToolsApi* | [**calculate_x_api_cost**](docs/FreeToolsApi.md#calculate_x_api_cost) | **POST** /tools/x-api-cost-calculator | Calculate the monthly X API cost
 *FreeToolsApi* | [**check_link_preview**](docs/FreeToolsApi.md#check_link_preview) | **POST** /tools/link-preview-checker | Check how a link previews on X, LinkedIn, Facebook and chat apps (Open Graph and Twitter card tags)
@@ -112,27 +114,38 @@ Class | Method | HTTP request | Description
 *FreeToolsApi* | [**check_youtube_thumbnail**](docs/FreeToolsApi.md#check_youtube_thumbnail) | **POST** /tools/youtube-thumbnail-size-checker | Check a YouTube thumbnail's ratio, width, file size and format against YouTube's requirements
 *FreeToolsApi* | [**clean_text**](docs/FreeToolsApi.md#clean_text) | **POST** /tools/ai-text-cleaner | Clean AI-written text: dashes, quotes, invisible characters, markdown
 *FreeToolsApi* | [**count_characters**](docs/FreeToolsApi.md#count_characters) | **POST** /tools/social-media-character-counter | Count characters as each network counts them
+*FreeToolsApi* | [**find_automation_recipes**](docs/FreeToolsApi.md#find_automation_recipes) | **GET** /tools/social-media-automation-recipes | Find n8n, Zapier and Make recipes that automate social media posting through the PostBoost API
 *FreeToolsApi* | [**format_instagram_caption**](docs/FreeToolsApi.md#format_instagram_caption) | **POST** /tools/instagram-line-break-generator | Keep blank lines in an Instagram caption with spacer lines, and count it
 *FreeToolsApi* | [**format_linked_in_post**](docs/FreeToolsApi.md#format_linked_in_post) | **POST** /tools/linkedin-post-formatter | Format a LinkedIn post with bold, italic and lists
+*FreeToolsApi* | [**generate_alt_text**](docs/FreeToolsApi.md#generate_alt_text) | **POST** /tools/alt-text-generator | Write alt text for an image with AI (needs a token, spends AI credits)
+*FreeToolsApi* | [**generate_bio**](docs/FreeToolsApi.md#generate_bio) | **POST** /tools/instagram-bio-generator | Write five profile bios with AI (needs a token, spends AI credits)
 *FreeToolsApi* | [**generate_caption**](docs/FreeToolsApi.md#generate_caption) | **POST** /tools/instagram-caption-generator | Write three post captions for a topic with AI (needs a token, spends AI credits)
 *FreeToolsApi* | [**generate_fancy_text**](docs/FreeToolsApi.md#generate_fancy_text) | **POST** /tools/fancy-text-generator | Convert text to fancy Unicode styles
 *FreeToolsApi* | [**generate_hashtags**](docs/FreeToolsApi.md#generate_hashtags) | **POST** /tools/instagram-hashtag-generator | Generate hashtags for a post topic with AI (needs a token, spends AI credits)
 *FreeToolsApi* | [**generate_hooks**](docs/FreeToolsApi.md#generate_hooks) | **POST** /tools/hook-generator | Generate hooks (opening lines) for a social media post with AI (needs a token, spends AI credits)
+*FreeToolsApi* | [**generate_linked_in_headline**](docs/FreeToolsApi.md#generate_linked_in_headline) | **POST** /tools/linkedin-headline-generator | Write five LinkedIn profile headlines with AI (needs a token, spends AI credits)
 *FreeToolsApi* | [**generate_qr_code**](docs/FreeToolsApi.md#generate_qr_code) | **POST** /tools/qr-code-generator | Generate a QR code (SVG) for a link or text, with optional UTM tags
 *FreeToolsApi* | [**generate_social_posts_from_blog**](docs/FreeToolsApi.md#generate_social_posts_from_blog) | **POST** /tools/blog-to-social-media | Turn a blog post (URL or text) into one social post per network with AI (needs a token, spends AI credits)
+*FreeToolsApi* | [**generate_usernames**](docs/FreeToolsApi.md#generate_usernames) | **POST** /tools/social-media-username-generator | Generate social media usernames
+*FreeToolsApi* | [**generate_youtube_description**](docs/FreeToolsApi.md#generate_youtube_description) | **POST** /tools/youtube-description-generator | Write three YouTube video descriptions with AI (needs a token, spends AI credits)
+*FreeToolsApi* | [**generate_youtube_titles**](docs/FreeToolsApi.md#generate_youtube_titles) | **POST** /tools/youtube-title-generator | Write five YouTube video titles with AI (needs a token, spends AI credits)
 *FreeToolsApi* | [**get_best_times_to_post**](docs/FreeToolsApi.md#get_best_times_to_post) | **GET** /tools/best-time-to-post | Get the best times to post per network from published studies, with sources
+*FreeToolsApi* | [**get_glossary**](docs/FreeToolsApi.md#get_glossary) | **GET** /tools/social-media-glossary | Look up social media terms: plain-language definitions by category, with sources and related terms
 *FreeToolsApi* | [**get_hook_templates**](docs/FreeToolsApi.md#get_hook_templates) | **GET** /tools/hook-generator/library | Get free hook templates for social media posts, filtered by style and network
 *FreeToolsApi* | [**get_image_sizes**](docs/FreeToolsApi.md#get_image_sizes) | **GET** /tools/social-media-image-sizes | Get social media image sizes per network, each with its source
 *FreeToolsApi* | [**get_safe_zones**](docs/FreeToolsApi.md#get_safe_zones) | **POST** /tools/safe-zone-checker | Get the TikTok, Instagram Reels or YouTube Shorts safe zones for a vertical frame
 *FreeToolsApi* | [**get_video_specs**](docs/FreeToolsApi.md#get_video_specs) | **GET** /tools/social-media-video-specs | Get social media video ratios, resolutions, lengths and file size limits per network, with sources
 *FreeToolsApi* | [**list_awareness_days**](docs/FreeToolsApi.md#list_awareness_days) | **GET** /tools/social-media-holiday-calendar | List public holidays, awareness days and social media days by date, country, type and topic, with sources
 *FreeToolsApi* | [**list_free_tools**](docs/FreeToolsApi.md#list_free_tools) | **GET** /tools | List the free tools
+*FreeToolsApi* | [**pick_social_media_tool**](docs/FreeToolsApi.md#pick_social_media_tool) | **POST** /tools/social-media-tool-picker | Match your needs against social media management tools and see what each one misses
 *FreeToolsApi* | [**plan_content_calendar**](docs/FreeToolsApi.md#plan_content_calendar) | **POST** /tools/social-media-content-calendar-generator | Plan a social media content calendar and get it as CSV and ICS
 *FreeToolsApi* | [**plan_posting_frequency**](docs/FreeToolsApi.md#plan_posting_frequency) | **POST** /tools/posting-frequency-planner | Plan how often to post on each network
 *FreeToolsApi* | [**preview_post**](docs/FreeToolsApi.md#preview_post) | **POST** /tools/social-media-post-preview | Preview where a post folds and when its image is cropped on Instagram, X, LinkedIn and Facebook
 *FreeToolsApi* | [**score_social_audit**](docs/FreeToolsApi.md#score_social_audit) | **POST** /tools/social-media-audit-template | Score a social media audit checklist and get the top fixes
 *FreeToolsApi* | [**search_emoji**](docs/FreeToolsApi.md#search_emoji) | **POST** /tools/social-media-emoji-picker | Search emoji by name or keyword, to copy and paste into a post
 *FreeToolsApi* | [**split_thread**](docs/FreeToolsApi.md#split_thread) | **POST** /tools/x-thread-maker | Split long text into a thread
+*FreeToolsApi* | [**summarize_report**](docs/FreeToolsApi.md#summarize_report) | **POST** /tools/social-media-report-generator | Summarize social media post metrics into a report
+*FreeToolsApi* | [**verify_webhook_signature**](docs/FreeToolsApi.md#verify_webhook_signature) | **POST** /tools/webhook-signature-verifier | Verify an HMAC webhook signature
 *HashtagGroupsApi* | [**create_hashtag_group**](docs/HashtagGroupsApi.md#create_hashtag_group) | **POST** /{workspaceUuid}/hashtag-groups | Create a hashtag group
 *HashtagGroupsApi* | [**delete_hashtag_group**](docs/HashtagGroupsApi.md#delete_hashtag_group) | **DELETE** /{workspaceUuid}/hashtag-groups/{hashtagGroupId} | Delete a hashtag group
 *HashtagGroupsApi* | [**get_hashtag_group**](docs/HashtagGroupsApi.md#get_hashtag_group) | **GET** /{workspaceUuid}/hashtag-groups/{hashtagGroupId} | Get a hashtag group
