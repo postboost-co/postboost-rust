@@ -1,6 +1,6 @@
 [package]
 name = "postboost"
-version = "1.57.7"
+version = "1.57.8"
 authors = ["hi@postboost.co"]
 description = "Rust client for the PostBoost social media scheduling API"
 license = "MIT"
