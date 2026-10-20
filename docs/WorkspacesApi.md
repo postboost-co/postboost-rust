@@ -303,7 +303,7 @@ Name | Type | Description  | Required | Notes
 > models::XUsage get_x_usage(workspace_uuid)
 X (Twitter) usage
 
-The workspace's X posts this calendar month (UTC) against its monthly X allowance. Every thread part is one X post; a part with a link also counts as a link post. When the allowance is used up, scheduling to X is refused (`429`, `code: x_monthly_cap_reached`) and X posts that come due fail with \"Monthly X allowance reached\". Other networks are not affected. See the X policy in the developer docs. 
+The workspace's X posts this calendar month (UTC) against its monthly X allowance. Every thread part is one X post; a part with a link also counts as a link post. Once enforcement is switched on (`enforced: true`), scheduling to X is refused when the allowance is used up (`429`, `code: x_monthly_cap_reached`) and X posts that come due fail with \"Monthly X allowance reached\". Until then usage is tracked only. Other networks are not affected. See the X policy in the developer docs. 
 
 ### Parameters
 
