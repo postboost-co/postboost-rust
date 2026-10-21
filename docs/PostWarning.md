@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**code** | **String** |  | 
+**code** | **String** | One of the codes above. The list grows over time (`x-extensible-enum`), so accept unknown values. | 
 **account_id** | Option<**i32**> | The account the warning is about; null when it is about the whole post. | 
 **message** | **String** |  | 
 
