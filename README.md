@@ -6,7 +6,7 @@ Official Rust client for the [PostBoost API](https://postboost.co/docs/api).
 
 ```toml
 [dependencies]
-postboost = "1.62.0"
+postboost = "1.64.1"
 ```
 
 Or with cargo:
@@ -20,7 +20,7 @@ cargo add postboost
 | **crates.io** | [crates.io/crates/postboost](https://crates.io/crates/postboost) |
 | **GitHub** | [postboost-co/postboost-rust](https://github.com/postboost-co/postboost-rust) |
 | **Docs** | [postboost.co/docs/api](https://postboost.co/docs/api) |
-| **Version** | v1.62.0 |
+| **Version** | v1.64.1 |
 
 ## Quick start
 
@@ -100,6 +100,7 @@ Class | Method | HTTP request | Description
 *CompetitorsApi* | [**list_competitors**](docs/CompetitorsApi.md#list_competitors) | **GET** /{workspaceUuid}/competitors | List competitors
 *FreeToolsApi* | [**build_agent_skill**](docs/FreeToolsApi.md#build_agent_skill) | **POST** /tools/social-media-agent-skill-builder | Build a SKILL.md, AGENTS.md or system prompt for a social media agent
 *FreeToolsApi* | [**build_hashtag_groups**](docs/FreeToolsApi.md#build_hashtag_groups) | **POST** /tools/hashtag-group-builder | Clean, dedupe and split hashtags into groups that fit a network's hashtag cap
+*FreeToolsApi* | [**build_linkedin_carousel**](docs/FreeToolsApi.md#build_linkedin_carousel) | **POST** /tools/linkedin-carousel-maker | Turn text into LinkedIn carousel (PDF document) slides
 *FreeToolsApi* | [**build_utm_url**](docs/FreeToolsApi.md#build_utm_url) | **POST** /tools/utm-builder | Build a UTM-tagged campaign URL
 *FreeToolsApi* | [**calculate_aspect_ratio**](docs/FreeToolsApi.md#calculate_aspect_ratio) | **POST** /tools/aspect-ratio-calculator | Calculate an aspect ratio, or the missing side of an image at a given ratio
 *FreeToolsApi* | [**calculate_carousel_slices**](docs/FreeToolsApi.md#calculate_carousel_slices) | **POST** /tools/instagram-carousel-splitter | Split a wide image into seamless Instagram carousel slides
@@ -128,6 +129,7 @@ Class | Method | HTTP request | Description
 *FreeToolsApi* | [**generate_linked_in_headline**](docs/FreeToolsApi.md#generate_linked_in_headline) | **POST** /tools/linkedin-headline-generator | Write five LinkedIn profile headlines with AI (needs a token, spends AI credits)
 *FreeToolsApi* | [**generate_qr_code**](docs/FreeToolsApi.md#generate_qr_code) | **POST** /tools/qr-code-generator | Generate a QR code (SVG) for a link or text, with optional UTM tags
 *FreeToolsApi* | [**generate_social_posts_from_blog**](docs/FreeToolsApi.md#generate_social_posts_from_blog) | **POST** /tools/blog-to-social-media | Turn a blog post (URL or text) into one social post per network with AI (needs a token, spends AI credits)
+*FreeToolsApi* | [**generate_social_posts_from_video**](docs/FreeToolsApi.md#generate_social_posts_from_video) | **POST** /tools/youtube-to-social-posts | Turn a YouTube video's captions into an X thread and social captions with AI (needs a token, spends AI credits)
 *FreeToolsApi* | [**generate_usernames**](docs/FreeToolsApi.md#generate_usernames) | **POST** /tools/social-media-username-generator | Generate social media usernames
 *FreeToolsApi* | [**generate_youtube_description**](docs/FreeToolsApi.md#generate_youtube_description) | **POST** /tools/youtube-description-generator | Write three YouTube video descriptions with AI (needs a token, spends AI credits)
 *FreeToolsApi* | [**generate_youtube_titles**](docs/FreeToolsApi.md#generate_youtube_titles) | **POST** /tools/youtube-title-generator | Write five YouTube video titles with AI (needs a token, spends AI credits)
