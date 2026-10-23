@@ -28,6 +28,7 @@ Method | HTTP request | Description
 [**format_linked_in_post**](FreeToolsApi.md#format_linked_in_post) | **POST** /tools/linkedin-post-formatter | Format a LinkedIn post with bold, italic and lists
 [**generate_alt_text**](FreeToolsApi.md#generate_alt_text) | **POST** /tools/alt-text-generator | Write alt text for an image with AI (needs a token, spends AI credits)
 [**generate_bio**](FreeToolsApi.md#generate_bio) | **POST** /tools/instagram-bio-generator | Write five profile bios with AI (needs a token, spends AI credits)
+[**generate_brand_voice**](FreeToolsApi.md#generate_brand_voice) | **POST** /tools/brand-voice-generator | Derive a brand voice from 3 to 10 of your posts with AI: traits with quoted evidence, a guide, an AI system prompt and PostBoost brand voice JSON (needs a token, spends AI credits)
 [**generate_caption**](FreeToolsApi.md#generate_caption) | **POST** /tools/instagram-caption-generator | Write three post captions for a topic with AI (needs a token, spends AI credits)
 [**generate_fancy_text**](FreeToolsApi.md#generate_fancy_text) | **POST** /tools/fancy-text-generator | Convert text to fancy Unicode styles
 [**generate_hashtags**](FreeToolsApi.md#generate_hashtags) | **POST** /tools/instagram-hashtag-generator | Generate hashtags for a post topic with AI (needs a token, spends AI credits)
@@ -769,6 +770,36 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**models::FreeToolGenerateBioResponse**](FreeToolGenerateBioResponse.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## generate_brand_voice
+
+> models::FreeToolGenerateBrandVoiceResponse generate_brand_voice(free_tool_generate_brand_voice_request)
+Derive a brand voice from 3 to 10 of your posts with AI: traits with quoted evidence, a guide, an AI system prompt and PostBoost brand voice JSON (needs a token, spends AI credits)
+
+Derive a brand voice from 3 to 10 of your posts with AI: traits with quoted evidence, a guide, an AI system prompt and PostBoost brand voice JSON (needs a token, spends AI credits). The same logic as the free web tool at https://postboost.co/tools/brand-voice-generator. Needs an API token (a scoped key needs the `ai` ability and pays with its own workspace). A new generation spends 1 AI credit of the workspace you name (or your active workspace); a repeated identical request is answered from the cache for free.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**free_tool_generate_brand_voice_request** | [**FreeToolGenerateBrandVoiceRequest**](FreeToolGenerateBrandVoiceRequest.md) |  | [required] |
+
+### Return type
+
+[**models::FreeToolGenerateBrandVoiceResponse**](FreeToolGenerateBrandVoiceResponse.md)
 
 ### Authorization
 
